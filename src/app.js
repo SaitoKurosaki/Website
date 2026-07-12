@@ -24,7 +24,7 @@ async function dcProfile() {
   const avatar = data.data.discord_user.avatar;
   const deco = data.data.discord_user.avatar_decoration_data.asset;
   const status = data.data.discord_status;
-
+  console.log(deco);
   const playingActivity = data.data.activities.find(
     (activity) => activity.type === 0,
   );
@@ -44,7 +44,6 @@ async function dcProfile() {
   let currentActivity = null;
   let activityType = "";
 
-  // Priority
   if (playingActivity) {
     currentActivity = playingActivity;
     activityType = "Playing";
