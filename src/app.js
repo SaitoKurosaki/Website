@@ -1,14 +1,11 @@
 const image = document.querySelector(".picture");
 const decoration = document.querySelector(".decoration");
 const saitokurosaki = "862974778226638858";
-const ken = "1481112054474739732";
 const mind = document.querySelector(".mind");
 const statuscolor = document.querySelector(".statuscolor");
 const usernametxt = document.querySelector(".username");
 const nametxt = document.querySelector(".name");
 const statusicon = document.querySelector(".statusicon");
-const offline = "https://assumi.ng/assets/discord/offline.png";
-const idle = "https://assumi.ng/assets/discord/idle.png";
 const activity = document.querySelector(".activity");
 const cover = document.querySelector(".logo");
 
@@ -28,7 +25,7 @@ async function dcProfile() {
   const deco = data.data.discord_user.avatar_decoration_data.asset;
   const status = data.data.discord_status;
 
-  const gameActivity = data.data.activities.find(
+  const playingActivity = data.data.activities.find(
     (activity) => activity.type === 0,
   );
 
@@ -36,17 +33,37 @@ async function dcProfile() {
     (activity) => activity.type === 2,
   );
 
+  const watchingActivity = data.data.activities.find(
+    (activity) => activity.type === 3,
+  );
+
   const customStatus = data.data.activities.find(
     (activity) => activity.type === 4,
   );
 
   let currentActivity = null;
+  let activityType = "";
 
-  if (gameActivity) {
-    currentActivity = gameActivity;
+  // Priority
+  if (playingActivity) {
+    currentActivity = playingActivity;
+    activityType = "Playing";
     cover.style.display = "none";
+  } else if (watchingActivity) {
+    currentActivity = watchingActivity;
+    activityType = "Watching";
+
+    cover.style.display = "block";
+
+    const imageUrl =
+      "https://media.discordapp.net/external/" +
+      currentActivity.assets.large_image.replace("mp:external/", "");
+
+    cover.src = imageUrl;
   } else if (spotifyActivity) {
     currentActivity = spotifyActivity;
+    activityType = "Listening to";
+
     cover.style.display = "block";
     cover.src = data.data.spotify.album_art_url;
   } else {
@@ -54,33 +71,97 @@ async function dcProfile() {
   }
 
   decoration.src = `https://cdn.discordapp.com/avatar-decoration-presets/${deco}.png`;
+
   image.src = `https://cdn.discordapp.com/avatars/${saitokurosaki}/${avatar}.png?size=512`;
 
   nametxt.textContent = name;
   usernametxt.textContent = `@${username}`;
-  mind.textContent = customStatus?.state ?? "";
+
+  if (customStatus) {
+    mind.textContent = customStatus.state;
+  } else {
+    mind.textContent = "";
+  }
 
   let time = "";
 
-  if (currentActivity?.timestamps?.start) {
-    const elapsed = Date.now() - currentActivity.timestamps.start;
+  if (currentActivity) {
+    if (currentActivity.timestamps) {
+      if (currentActivity.timestamps.start) {
+        const elapsed = Date.now() - currentActivity.timestamps.start;
 
-    if (currentActivity.timestamps.end) {
-      const duration =
-        currentActivity.timestamps.end - currentActivity.timestamps.start;
+        if (currentActivity.timestamps.end) {
+          const duration =
+            currentActivity.timestamps.end - currentActivity.timestamps.start;
 
-      time = `${formatTime(elapsed)} / ${formatTime(duration)}`;
-    } else {
-      time = formatTime(elapsed);
+          time = formatTime(elapsed) + " / " + formatTime(duration);
+        } else {
+          time = formatTime(elapsed);
+        }
+      }
     }
-  }
 
-  activity.innerHTML = `
-    <p>${currentActivity?.name ?? ""}</p>
-    <p>${currentActivity?.details ?? ""}</p>
-    <p>${currentActivity?.state ?? ""}</p>
-    <p class="text-green-500">${time}</p>
-  `;
+    if (currentActivity.type === 3) {
+      activity.innerHTML = `
+<p class="text-gray-400 text-xs mb-1">
+    ${activityType} ${currentActivity.name}
+</p>
+
+<p class="text-white font-bold text-xl leading-5">
+    ${currentActivity.details}
+</p>
+
+<p class="text-gray-300 text-sm truncate">
+    ${currentActivity.state}
+</p>
+
+<p class="text-green-500 text-sm mt-1">
+    ${time}
+    <span class="text-gray-300">• ${currentActivity.assets.large_text}</span>
+</p>
+`;
+    } else if (currentActivity.type === 2) {
+      activity.innerHTML = `
+<p class="text-gray-400 text-xs mb-1">
+    ${activityType} ${currentActivity.name}
+</p>
+
+<p class="text-white font-bold text-xl leading-5">
+    ${currentActivity.details}
+</p>
+
+<p class="text-gray-300 text-sm truncate">
+    ${currentActivity.state}
+</p>
+
+<p class="text-green-500 text-sm mt-1">
+    ${time}
+    <span class="text-gray-300">• ${currentActivity.assets.large_text}</span>
+</p>
+`;
+    } else {
+      activity.innerHTML = `
+<p class="text-gray-400 text-xs mb-1">
+    ${activityType} ${currentActivity.name}
+</p>
+
+<p class="text-white font-bold text-xl leading-5">
+    ${currentActivity.details}
+</p>
+
+<p class="text-gray-300 text-sm truncate">
+    ${currentActivity.state}
+</p>
+
+<p class="text-green-500 text-sm mt-1">
+    ${time}
+    <span class="text-gray-300">• ${currentActivity.assets.large_text}</span>
+</p>
+`;
+    }
+  } else {
+    activity.innerHTML = "";
+  }
 
   if (status === "offline") {
     statuscolor.style.backgroundImage =
