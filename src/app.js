@@ -8,7 +8,7 @@ const nametxt = document.querySelector(".name");
 const statusicon = document.querySelector(".statusicon");
 const activity = document.querySelector(".activity");
 const cover = document.querySelector(".logo");
-
+const statusactivity = document.querySelector(".statusactivity");
 dcProfile();
 setInterval(dcProfile, 500);
 
@@ -139,16 +139,15 @@ async function dcProfile() {
 </p>
 `;
     } else {
+      statusactivity.style.right = "15px";
+      statusactivity.style.bottom = "15px";
       activity.innerHTML = `
+      
+      
 <p class="text-gray-400 text-xs mb-1">
     ${activityType} ${currentActivity.name}
 </p>
-
-<p class="text-white font-bold text-xl leading-5">
-    ${currentActivity.details}
-</p>
-
-<p class="text-gray-300 text-sm truncate">
+<p class="text-gray-300 text-sm truncate ">
     ${currentActivity.state}
 </p>
 
@@ -176,8 +175,15 @@ async function dcProfile() {
 function formatTime(ms) {
   const totalSeconds = Math.floor(ms / 1000);
 
-  const minutes = Math.floor(totalSeconds / 60);
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;
+
+  if (hours > 0) {
+    return `${hours}:${minutes.toString().padStart(2, "0")}:${seconds
+      .toString()
+      .padStart(2, "0")}`;
+  }
 
   return `${minutes}:${seconds.toString().padStart(2, "0")}`;
 }
