@@ -108,7 +108,7 @@ async function dcProfile() {
 
 
 
-<p class="text-gray-300 font-bold text-xs leading-5">
+<p class="text-white font-bold text-xs leading-5">
     ${currentActivity.details}
 </p>
 
@@ -127,7 +127,7 @@ async function dcProfile() {
     ${activityType} ${currentActivity.name}
 </p>
 
-<p class="text-gray-300 font-bold text-xs leading-5">
+<p class="text-white font-bold text-xs leading-5">
     ${currentActivity.details}
 </p>
 
