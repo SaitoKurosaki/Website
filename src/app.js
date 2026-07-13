@@ -102,11 +102,13 @@ async function dcProfile() {
 
     if (currentActivity.type === 3) {
       activity.innerHTML = `
-<p class="text-gray-400 text-xs mb-1">
+<p class="text-white text-sm mb-5 font-bold">
     ${activityType} ${currentActivity.name}
 </p>
 
-<p class="text-white font-bold text-xl leading-5">
+
+
+<p class="text-gray-300 font-bold text-xs leading-5">
     ${currentActivity.details}
 </p>
 
@@ -121,11 +123,11 @@ async function dcProfile() {
 `;
     } else if (currentActivity.type === 2) {
       activity.innerHTML = `
-<p class="text-gray-400 text-xs mb-1">
+<p class="text-white text-sm mb-5 font-bold">
     ${activityType} ${currentActivity.name}
 </p>
 
-<p class="text-white font-bold text-xl leading-5">
+<p class="text-gray-300 font-bold text-xs leading-5">
     ${currentActivity.details}
 </p>
 
@@ -144,9 +146,11 @@ async function dcProfile() {
       activity.innerHTML = `
       
       
-<p class="text-gray-400 text-xs mb-1">
+<p class="text-white text-sm mb-5 font-bold">
     ${activityType} ${currentActivity.name}
 </p>
+
+
 <p class="text-gray-300 text-sm truncate ">
     ${currentActivity.state}
 </p>
