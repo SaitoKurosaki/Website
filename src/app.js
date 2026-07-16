@@ -9,8 +9,19 @@ const statusicon = document.querySelector(".statusicon");
 const activity = document.querySelector(".activity");
 const cover = document.querySelector(".logo");
 const statusactivity = document.querySelector(".statusactivity");
+decor();
 dcProfile();
 setInterval(dcProfile, 500);
+
+async function decor() {
+  const response = await fetch(
+    `https://api.lanyard.rest/v1/users/${saitokurosaki}`,
+  );
+
+  const data = await response.json();
+  const deco = data.data.discord_user.avatar_decoration_data.asset;
+  decoration.src = `https://cdn.discordapp.com/avatar-decoration-presets/${deco}.png`;
+}
 
 async function dcProfile() {
   const response = await fetch(
@@ -22,9 +33,8 @@ async function dcProfile() {
   const name = data.data.discord_user.display_name;
   const username = data.data.discord_user.username;
   const avatar = data.data.discord_user.avatar;
-  const deco = data.data.discord_user.avatar_decoration_data.asset;
+
   const status = data.data.discord_status;
-  console.log(deco);
   const playingActivity = data.data.activities.find(
     (activity) => activity.type === 0,
   );
@@ -68,8 +78,6 @@ async function dcProfile() {
   } else {
     cover.style.display = "none";
   }
-
-  decoration.src = `https://cdn.discordapp.com/avatar-decoration-presets/${deco}.png`;
 
   image.src = `https://cdn.discordapp.com/avatars/${saitokurosaki}/${avatar}.png?size=512`;
 
