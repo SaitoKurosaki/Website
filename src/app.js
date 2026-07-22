@@ -7,7 +7,7 @@ const usernametxt = document.querySelector(".username");
 const nametxt = document.querySelector(".name");
 const statusicon = document.querySelector(".statusicon");
 const activity = document.querySelector(".activity");
-const cover = document.querySelector(".logo");
+const activitystatus = document.querySelector(".activitystatus");
 const statusactivity = document.querySelector(".statusactivity");
 decor();
 dcProfile();
@@ -53,30 +53,22 @@ async function dcProfile() {
 
   let currentActivity = null;
   let activityType = "";
-
-  if (playingActivity) {
-    currentActivity = playingActivity;
-    activityType = "Playing";
-    cover.style.display = "none";
+  let imagealbum;
+  let album;
+  if (spotifyActivity) {
+    currentActivity = spotifyActivity;
+    activityType = "Listening to";
+    album = data.data.spotify.album_art_url;
   } else if (watchingActivity) {
     currentActivity = watchingActivity;
     activityType = "Watching";
 
-    cover.style.display = "block";
-
-    const imageUrl =
+    imagealbum =
       "https://media.discordapp.net/external/" +
       currentActivity.assets.large_image.replace("mp:external/", "");
-
-    cover.src = imageUrl;
-  } else if (spotifyActivity) {
-    currentActivity = spotifyActivity;
-    activityType = "Listening to";
-
-    cover.style.display = "block";
-    cover.src = data.data.spotify.album_art_url;
-  } else {
-    cover.style.display = "none";
+  } else if (playingActivity) {
+    currentActivity = playingActivity;
+    activityType = "Playing";
   }
 
   image.src = `https://cdn.discordapp.com/avatars/${saitokurosaki}/${avatar}.png?size=512`;
@@ -109,68 +101,104 @@ async function dcProfile() {
     }
 
     if (currentActivity.type === 3) {
-      activity.innerHTML = `
-<p class="text-white text-sm mb-5 font-bold">
-    ${activityType} ${currentActivity.name}
+      activitystatus.innerHTML = `
+     <div class="flex items-center w-auto text-nowrap flex-col relative ml-5">
+     <div class="flex gap-2">
+     <img class="w-5 h-5" src=../Pictures/electric.png alt="image">
+      <p class="text-white text-sm mb-2 font-bold">
+    ${activityType} <span class="text-[#ff5e00]">${currentActivity.name}</span>
 </p>
 
+</div >
+  <img
+    class="logo w-full h-25 rounded-md object-cover shrink-0 "
+    src="${imagealbum}"
+    alt="Album Cover"
+  />
+  <img class="w-8 h-8  absolute bottom-1 left-1" src=../Pictures/crunchyroll.png alt="image">
+  </div>
 
 
-<p class="text-white font-bold text-xs leading-5">
+  
+  <div class="flex w-auto flex-col  items-center mr-5 ">
+
+
+
+  <p class="text-white font-bold text-xs leading-5 ">
     ${currentActivity.details}
 </p>
-
-<p class="text-gray-300 text-sm truncate">
-    ${currentActivity.state}
+<p class="text-gray-300 text-sm text-wrap max-w-50 truncate ">
+    ${currentActivity.state} 
 </p>
+<div>
 
-<p class="text-green-500 text-sm mt-1">
+<p class="text-gray-200 text-sm">${currentActivity.assets.large_text}</p>
+</div>
+<p class="text-green-500 text-sm ">
     ${time}
-    <span class="text-gray-300">• ${currentActivity.assets.large_text}</span>
 </p>
+</div>
 `;
     } else if (currentActivity.type === 2) {
-      activity.innerHTML = `
-<p class="text-white text-sm mb-5 font-bold">
-    ${activityType} ${currentActivity.name}
+      activitystatus.innerHTML = `
+     <div class="flex items-center w-auto text-nowrap flex-col relative ml-5">
+     <div class="flex gap-2">
+     <img class="w-5 h-5" src=../Pictures/electric.png alt="image">
+      <p class="text-white text-sm mb-2 font-bold">
+    ${activityType} <span class="text-green-400">${currentActivity.name}</span>
 </p>
 
-<p class="text-white font-bold text-xs leading-5">
-    ${currentActivity.details}
-</p>
+</div >
+  <img
+    class="logo w-full h-25 rounded-md object-cover shrink-0 "
+    src="${album}"
+    alt="Album Cover"
+  />
+  <img class="w-8 h-8  absolute bottom-1 left-1" src=../Pictures/spotify.png alt="image">
+  </div>
 
-<p class="text-gray-300 text-sm truncate">
+
+  
+  <div class="flex w-auto flex-col  items-center mr-5 ">
+
+<p class="text-gray-300 text-sm text-wrap max-w-50 truncate ">
     ${currentActivity.state}
 </p>
 
-<p class="text-green-500 text-sm mt-1">
-    ${time}
-    <span class="text-gray-300">• ${currentActivity.assets.large_text}</span>
-</p>
-`;
-    } else {
-      statusactivity.style.right = "15px";
-      statusactivity.style.bottom = "15px";
-      activity.innerHTML = `
-      
-      
-<p class="text-white text-sm mb-5 font-bold">
-    ${activityType} ${currentActivity.name}
+  <p class="text-white font-bold text-xs leading-5 ">
+    ${currentActivity.details}
 </p>
 
+
+<p class="text-green-500 text-sm ">
+    ${time}
+</p>
+</div>
+`;
+    } else {
+      activitystatus.innerHTML = `
+     <div class="flex flex-col ml-10">
+      <p class="text-white text-sm mb-2 font-bold">
+    ${activityType} ${currentActivity.name}
+</p>
+  </div>
+
+  <div class="flex flex-col text-center mr-10">
+  <p class="text-white font-bold text-xs leading-5 ">
+    ${currentActivity.details}
+</p>
 
 <p class="text-gray-300 text-sm truncate ">
     ${currentActivity.state}
 </p>
 
-<p class="text-green-500 text-sm mt-1">
+<p class="text-green-500 text-sm mt-1 ">
     ${time}
-    <span class="text-gray-300">• ${currentActivity.assets.large_text}</span>
+    <span class="text-gray-300">• ${currentActivity.name}</span>
 </p>
+</div>
 `;
     }
-  } else {
-    activity.innerHTML = "";
   }
 
   if (status === "offline") {

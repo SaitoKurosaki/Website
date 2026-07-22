@@ -5,20 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@Saito.Kurosaki</title>
     <link rel="stylesheet" href="output.css?v=7" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=DynaPuff:wght@400..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
   </head>
   <body class="bg-[#000000]">
-    <header>
-      <div
-        class="profile flex flex-col justify-center min-h-screen items-center"
-      >
+    <main>
+      <header class="flex flex-col justify-center h-dvh items-center gap-5">
         <div
-          class="card relative bg-transparent border border-[rgba(255,255,255,0.13)] rounded-md w-150 h-85"
+          class="card relative bg-transparent border border-[rgba(255,255,255,0.13)] rounded-md w-150 h-75"
         >
           <div class="banner">
             <img
@@ -91,19 +90,29 @@
                 />
               </div>
             </div>
-            <div class="statusactivity flex items-center gap-3 absolute right-5 top-0 bottom-2" >
-              <div class="statusactivity flex items-center">
-           <img
-  class="logo w-18 h-24 rounded-md object-cover shrink-0"
-  alt="Album Cover"
-/>
-
-           <div class="activity text-white flex flex-col w-48"></div>
-          </div>
           </div>
         </div>
-      </div>
-    </header>
+
+        <div
+          class="activitystatus bg-transparent border border-[rgba(255,255,255,0.13)] rounded-md w-120 h-40 flex justify-between items-center text-white relative"
+        >
+          <div class="statustext flex items-center absolute left-5 top-3">
+            <img class="w-5 h-5" src="../Pictures/electric.png" alt="image" />
+            <p>Current Activity</p>
+          </div>
+          <div
+            class="status flex items-center justify-between w-full m-10 relative"
+          >
+            <img
+              class="w-20 h-20 ml-3"
+              src="../Pictures/smile.png"
+              alt="image"
+            />
+            <h1>Nothing Right Now</h1>
+          </div>
+        </div>
+      </header>
+    </main>
   </body>
   <script src="app.js?v=7"></script>
 </html>
