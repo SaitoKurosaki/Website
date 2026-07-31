@@ -11,8 +11,9 @@ const activitystatus = document.querySelector(".activitystatus");
 const statusactivity = document.querySelector(".statusactivity");
 decor();
 dcProfile();
-setInterval(dcProfile, 500);
+setInterval(dcProfile, 1000);
 
+let discordapp;
 async function decor() {
   const response = await fetch(
     `https://api.lanyard.rest/v1/users/${saitokurosaki}`,
@@ -29,6 +30,23 @@ async function dcProfile() {
   );
 
   const data = await response.json();
+
+  discordapp = data.data.activities[1]?.application_id || null;
+  let discordappid;
+
+  let applicationid;
+  let discordappname;
+  let discordimage;
+  if (data.data.activities[1]?.type === 0) {
+    discordappid = await fetch(
+      `https://discord.com/api/v9/oauth2/applications/${discordapp}/rpc`,
+    );
+
+    applicationid = await discordappid.json();
+    imageid = applicationid.icon;
+    discordappname = data.data.activities[1].name;
+    discordimage = `https://cdn.discordapp.com/app-icons/${discordapp}/${imageid}.png`;
+  }
 
   const name = data.data.discord_user.display_name;
   const username = data.data.discord_user.username;
@@ -177,24 +195,31 @@ async function dcProfile() {
 `;
     } else {
       activitystatus.innerHTML = `
-     <div class="flex flex-col ml-10">
+     <div class="flex items-center w-auto text-nowrap flex-col relative ml-5">
+     <div class="flex gap-2">
+     <img class="w-5 h-5" src=../Pictures/electric.png alt="image">
       <p class="text-white text-sm mb-2 font-bold">
-    ${activityType} ${currentActivity.name}
+    ${activityType} <span class="text-white">${currentActivity.name}</span>
 </p>
+
+</div >
+  <img
+    class="logo w-full h-25 rounded-md object-cover shrink-0 "
+    src="${discordimage}"
+    alt="Album Cover"
+  />
   </div>
 
-  <div class="flex flex-col text-center mr-10">
-  <p class="text-white font-bold text-xs leading-5 ">
-    ${currentActivity.details}
+
+  
+  <div class="flex w-auto flex-col  items-center mr-5 ">
+
+<p class="text-gray-300 text-sm text-wrap max-w-50 truncate ">
+    ${discordappname}
 </p>
 
-<p class="text-gray-300 text-sm truncate ">
-    ${currentActivity.state}
-</p>
-
-<p class="text-green-500 text-sm mt-1 ">
+<p class="text-green-500 text-sm ">
     ${time}
-    <span class="text-gray-300">• ${currentActivity.name}</span>
 </p>
 </div>
 `;
