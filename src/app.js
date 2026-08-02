@@ -1,6 +1,6 @@
 const image = document.querySelector(".picture");
 const decoration = document.querySelector(".decoration");
-const saitokurosaki = "862974778226638858";
+const saitokurosaki = "1252623950907838546";
 const mind = document.querySelector(".mind");
 const statuscolor = document.querySelector(".statuscolor");
 const usernametxt = document.querySelector(".username");
@@ -101,7 +101,7 @@ async function dcProfile() {
   }
 
   let time = "";
-
+  console.log(currentActivity);
   if (currentActivity) {
     if (currentActivity.timestamps) {
       if (currentActivity.timestamps.start) {
@@ -120,38 +120,38 @@ async function dcProfile() {
 
     if (currentActivity.type === 3) {
       activitystatus.innerHTML = `
-     <div class="flex items-center w-auto text-nowrap flex-col relative ml-5">
-     <div class="flex gap-2">
-     <img class="w-5 h-5" src=../Pictures/electric.png alt="image">
-      <p class="text-white text-sm mb-2 font-bold">
+    
+     <div class="flex flex-col ml-5 mr-5 items-center gap-1 mb-2 mt-2">
+
+    
+     <div class ="flex gap-2 ">
+      <p class="text-white text-sm font-bold">
     ${activityType} <span class="text-[#ff5e00]">${currentActivity.name}</span>
 </p>
-
-</div >
+ <img class="w-5 h-5" src=../Pictures/crunchyroll.png alt="image">
+</div>
   <img
-    class="logo w-full h-25 rounded-md object-cover shrink-0 "
+    class="h-full w-20 rounded-md object-cover shrink-0"
     src="${imagealbum}"
     alt="Album Cover"
   />
-  <img class="w-8 h-8  absolute bottom-1 left-1" src=../Pictures/crunchyroll.png alt="image">
   </div>
 
 
   
-  <div class="flex w-auto flex-col  items-center mr-5 ">
+ <div class="flex  flex-col items-center mr-5 ml-5  gap-2 ">
 
 
 
-  <p class="text-white font-bold text-xs leading-5 ">
+  <p class="text-white font-bold text-xs  ">
     ${currentActivity.details}
 </p>
-<p class="text-gray-300 text-sm text-wrap max-w-50 truncate ">
+<p class="text-gray-300 text-sm ">
     ${currentActivity.state} 
 </p>
-<div>
+
 
 <p class="text-gray-200 text-sm">${currentActivity.assets.large_text}</p>
-</div>
 <p class="text-green-500 text-sm ">
     ${time}
 </p>
@@ -159,62 +159,62 @@ async function dcProfile() {
 `;
     } else if (currentActivity.type === 2) {
       activitystatus.innerHTML = `
-     <div class="flex items-center w-auto text-nowrap flex-col relative ml-5">
-     <div class="flex gap-2">
-     <img class="w-5 h-5" src=../Pictures/electric.png alt="image">
-      <p class="text-white text-sm mb-2 font-bold">
+   
+     <div class="flex flex-col ml-5 mr-5 items-center gap-1 mb-2 mt-2">
+
+    <div class =" flex gap-2">
+      <p class="text-white text-sm font-bold">
     ${activityType} <span class="text-green-400">${currentActivity.name}</span>
 </p>
-
-</div >
+ <img class="w-5 h-5" src=../Pictures/spotify.png alt="image"/>
+</div>
   <img
-    class="logo w-full h-25 rounded-md object-cover shrink-0 "
+class="h-full w-25 rounded-md object-cover shrink-0"
     src="${album}"
     alt="Album Cover"
   />
-  <img class="w-8 h-8  absolute bottom-1 left-1" src=../Pictures/spotify.png alt="image">
-  </div>
+</div >
+
 
 
   
-  <div class="flex w-auto flex-col  items-center mr-5 ">
+<div class="flex  flex-col items-center mr-5 ml-5  gap-2 ">
 
-<p class="text-gray-300 text-sm text-wrap max-w-50 truncate ">
-    ${currentActivity.state}
-</p>
 
-  <p class="text-white font-bold text-xs leading-5 ">
+
+  <p class="text-white font-bold text-xs ">
     ${currentActivity.details}
 </p>
 
-
+<p class="text-gray-300 text-sm ">
+    ${currentActivity.state}
+</p>
 <p class="text-green-500 text-sm ">
     ${time}
 </p>
 </div>
 `;
-    } else {
+    } else if (currentActivity.type === 0) {
       activitystatus.innerHTML = `
-     <div class="flex items-center w-auto text-nowrap flex-col relative ml-5">
-     <div class="flex gap-2">
-     <img class="w-5 h-5" src=../Pictures/electric.png alt="image">
-      <p class="text-white text-sm mb-2 font-bold">
+    
+       <div class="flex flex-col ml-5 mr-5 items-center gap-1 mb-2 mt-2">
+
+      <p class="text-white text-sm  font-bold">
     ${activityType} <span class="text-white">${currentActivity.name}</span>
 </p>
 
-</div >
   <img
-    class="logo w-full h-25 rounded-md object-cover shrink-0 "
+   class="w-25 h-25 rounded-md object-cover shrink-0"
     src="${discordimage}"
     alt="Album Cover"
   />
-  </div>
+ </div >
 
 
   
-  <div class="flex w-auto flex-col  items-center mr-5 ">
+<div class="flex  flex-col items-center mr-5 ml-5  gap-2 ">
 
-<p class="text-gray-300 text-sm text-wrap max-w-50 truncate ">
+<p class="text-gray-300 text-sm ">
     ${discordappname}
 </p>
 
@@ -222,8 +222,36 @@ async function dcProfile() {
     ${time}
 </p>
 </div>
+
 `;
     }
+  } else {
+    activitystatus.innerHTML = `
+      <div class="flex flex-col ml-5 mr-5 items-center gap-1 mb-2 mt-2">
+
+    
+     <div class ="flex gap-2 ">
+      <p class="text-white text-sm font-bold">
+       <p>Current Activity</p>
+</p>
+</div>
+  <img
+    class="h-full w-20 rounded-md object-cover shrink-0"
+    src="../Pictures/smile.png"
+    alt="Album Cover"
+  />
+  </div>
+
+
+  
+ <div class="flex  flex-col items-center mr-5 ml-5  gap-2 ">
+
+
+
+  <p class="text-white font-bold text-xs  ">
+   Nothing Right Now
+</p>
+</div>`;
   }
 
   if (status === "offline") {
