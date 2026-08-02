@@ -1,6 +1,6 @@
 const image = document.querySelector(".picture");
 const decoration = document.querySelector(".decoration");
-const saitokurosaki = "1252623950907838546";
+const saitokurosaki = "862974778226638858";
 const mind = document.querySelector(".mind");
 const statuscolor = document.querySelector(".statuscolor");
 const usernametxt = document.querySelector(".username");
