@@ -57,6 +57,11 @@ async function discordinfo() {
     applicationid = await discordappid.json();
   }
 
+  if (statusdc === "idle") {
+    onlinestatus.src = "https://assumi.ng/assets/discord/idle.png";
+  } else {
+    onlinestatus.src = "https://assumi.ng/assets/discord/offline.png";
+  }
   if (activity?.type === 2) {
     start = activity.timestamps.start;
     end = activity.timestamps.end;
