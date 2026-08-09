@@ -1,16 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
 .fonttext {
-  font-family: "Changa One", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-@keyframes spin-once {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  font-family: "Inter", sans-serif;
 }

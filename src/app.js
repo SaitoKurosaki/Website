@@ -1,19 +1,22 @@
-const image = document.querySelector(".picture");
-const decoration = document.querySelector(".decoration");
 const saitokurosaki = "862974778226638858";
-const mind = document.querySelector(".mind");
-const statuscolor = document.querySelector(".statuscolor");
-const usernametxt = document.querySelector(".username");
-const nametxt = document.querySelector(".name");
-const statusicon = document.querySelector(".statusicon");
-const activity = document.querySelector(".activity");
+const discord = document.querySelector(".discord");
+const name = document.querySelector("#name");
+const username = document.querySelector("#username");
+const status = document.querySelector("#status");
+const discordpicture = document.querySelector(".discordpicture");
+const decoration = document.querySelector(".decoration");
+const onlinestatus = document.querySelector(".onlinestatus");
+const activitylogo = document.querySelector(".activitylogo");
 const activitystatus = document.querySelector(".activitystatus");
-const statusactivity = document.querySelector(".statusactivity");
+const elapseTime = document.querySelector("#elapseTime");
+const onlineSince = Date.now();
+let elapsed;
+let start;
+let end;
+setInterval(discordinfo, 1000);
+setInterval(Time, 1000);
 decor();
-dcProfile();
-setInterval(dcProfile, 1000);
 
-let discordapp;
 async function decor() {
   const response = await fetch(
     `https://api.lanyard.rest/v1/users/${saitokurosaki}`,
@@ -24,244 +27,108 @@ async function decor() {
   decoration.src = `https://cdn.discordapp.com/avatar-decoration-presets/${deco}.png`;
 }
 
-async function dcProfile() {
+async function discordinfo() {
   const response = await fetch(
     `https://api.lanyard.rest/v1/users/${saitokurosaki}`,
   );
 
-  const data = await response.json();
+  let data = await response.json();
+  let avatar = data.data.discord_user.avatar;
+  let namedc = data.data.discord_user.display_name;
+  let usernamedc = data.data.discord_user.username;
+  let statusdc = data.data.discord_status;
+  let discordappname;
+  let iconimage;
+  let icon;
+  let applicationid;
+  let activity = data.data.activities[1];
+
+  name.innerText = namedc;
+  status.innerText = statusdc.toUpperCase();
+  username.innerText = usernamedc;
+  discordpicture.src = `https://cdn.discordapp.com/avatars/${saitokurosaki}/${avatar}.png?size=512`;
 
   discordapp = data.data.activities[1]?.application_id || null;
-  let discordappid;
-
-  let applicationid;
-  let discordappname;
-  let discordimage;
-  if (data.data.activities[1]?.type === 0) {
+  if (data.data.activities[1]?.type !== 100) {
     discordappid = await fetch(
       `https://discord.com/api/v9/oauth2/applications/${discordapp}/rpc`,
     );
 
     applicationid = await discordappid.json();
-    imageid = applicationid.icon;
-    discordappname = data.data.activities[1].name;
-    discordimage = `https://cdn.discordapp.com/app-icons/${discordapp}/${imageid}.png`;
   }
 
-  const name = data.data.discord_user.display_name;
-  const username = data.data.discord_user.username;
-  const avatar = data.data.discord_user.avatar;
+  if (activity?.type === 2) {
+    start = activity.timestamps.start;
+    end = activity.timestamps.end;
+    elapsed = Date.now() - start;
 
-  const status = data.data.discord_status;
-  const playingActivity = data.data.activities.find(
-    (activity) => activity.type === 0,
-  );
+    const duration = end - start;
+    const progress = Math.min((elapsed / duration) * 100, 100);
+    const time = `${formatTime(elapsed)} / ${formatTime(duration)}`;
 
-  const spotifyActivity = data.data.activities.find(
-    (activity) => activity.type === 2,
-  );
+    let details = data.data.activities[1].details;
+    let state = data.data.activities[1].state;
 
-  const watchingActivity = data.data.activities.find(
-    (activity) => activity.type === 3,
-  );
-
-  const customStatus = data.data.activities.find(
-    (activity) => activity.type === 4,
-  );
-
-  let currentActivity = null;
-  let activityType = "";
-  let imagealbum;
-  let album;
-  if (spotifyActivity) {
-    currentActivity = spotifyActivity;
-    activityType = "Listening to";
-    album = data.data.spotify.album_art_url;
-  } else if (watchingActivity) {
-    currentActivity = watchingActivity;
-    activityType = "Watching";
-
-    imagealbum =
-      "https://media.discordapp.net/external/" +
-      currentActivity.assets.large_image.replace("mp:external/", "");
-  } else if (playingActivity) {
-    currentActivity = playingActivity;
-    activityType = "Playing";
-  }
-
-  image.src = `https://cdn.discordapp.com/avatars/${saitokurosaki}/${avatar}.png?size=512`;
-
-  nametxt.textContent = name;
-  usernametxt.textContent = `@${username}`;
-
-  if (customStatus) {
-    mind.textContent = customStatus.state;
-  } else {
-    mind.textContent = "";
-  }
-
-  let time = "";
-  console.log(currentActivity);
-  if (currentActivity) {
-    if (currentActivity.timestamps) {
-      if (currentActivity.timestamps.start) {
-        const elapsed = Date.now() - currentActivity.timestamps.start;
-
-        if (currentActivity.timestamps.end) {
-          const duration =
-            currentActivity.timestamps.end - currentActivity.timestamps.start;
-
-          time = formatTime(elapsed) + " / " + formatTime(duration);
-        } else {
-          time = formatTime(elapsed);
-        }
-      }
-    }
-
-    if (currentActivity.type === 3) {
-      activitystatus.innerHTML = `
-    
-     <div class="flex flex-col ml-5 mr-5 items-center gap-1 mb-2 mt-2">
-
-    
-     <div class ="flex gap-2 ">
-      <p class="text-white text-sm font-bold">
-    ${activityType} <span class="text-[#ff5e00]">${currentActivity.name}</span>
-</p>
- <img class="w-5 h-5" src=../Pictures/crunchyroll.png alt="image">
-</div>
+    activitystatus.innerHTML = `
   <img
-    class="h-full w-20 rounded-md object-cover shrink-0"
-    src="${imagealbum}"
-    alt="Album Cover"
+    src="../Pictures/spotify.png"
+    class=" w-10 h-10 rounded-md object-cover"
   />
+
+  <div class="flex flex-col gap-3 w-full">
+
+    <p>Listening to Spotify</p>
+
+    <p class="text-gray-500">${state}</p>
+
+    <p>${details}</p>
+
+    <div class="flex items-center gap-2 w-full">
+      <span class="text-xs">${formatTime(elapsed)}</span>
+
+      <div class="relative h-1 bg-gray-300 rounded-full flex-1">
+        <div
+          class="absolute left-0 top-0 h-1 bg-black rounded-full"
+          style="width: ${progress}%"
+        ></div>
+      </div>
+
+      <span class="text-xs">${formatTime(duration)}</span>
+    </div>
+
   </div>
-
-
-  
- <div class="flex  flex-col items-center mr-5 ml-5  gap-2 ">
-
-
-
-  <p class="text-white font-bold text-xs  ">
-    ${currentActivity.details}
-</p>
-<p class="text-gray-300 text-sm ">
-    ${currentActivity.state} 
-</p>
-
-
-<p class="text-gray-200 text-sm">${currentActivity.assets.large_text}</p>
-<p class="text-green-500 text-sm ">
-    ${time}
-</p>
-</div>
 `;
-    } else if (currentActivity.type === 2) {
-      activitystatus.innerHTML = `
-   
-     <div class="flex flex-col ml-5 mr-5 items-center gap-1 mb-2 mt-2">
-
-    <div class =" flex gap-2">
-      <p class="text-white text-sm font-bold">
-    ${activityType} <span class="text-green-400">${currentActivity.name}</span>
-</p>
- <img class="w-5 h-5" src=../Pictures/spotify.png alt="image"/>
-</div>
-  <img
-class="h-full w-25 rounded-md object-cover shrink-0"
-    src="${album}"
-    alt="Album Cover"
-  />
-</div >
-
-
-
-  
-<div class="flex  flex-col items-center mr-5 ml-5  gap-2 ">
-
-
-
-  <p class="text-white font-bold text-xs ">
-    ${currentActivity.details}
-</p>
-
-<p class="text-gray-300 text-sm ">
-    ${currentActivity.state}
-</p>
-<p class="text-green-500 text-sm ">
-    ${time}
-</p>
-</div>
-`;
-    } else if (currentActivity.type === 0) {
-      activitystatus.innerHTML = `
-    
-       <div class="flex flex-col ml-5 mr-5 items-center gap-1 mb-2 mt-2">
-
-      <p class="text-white text-sm  font-bold">
-    ${activityType} <span class="text-white">${currentActivity.name}</span>
-</p>
-
-  <img
-   class="w-25 h-25 rounded-md object-cover shrink-0"
-    src="${discordimage}"
-    alt="Album Cover"
-  />
- </div >
-
-
-  
-<div class="flex  flex-col items-center mr-5 ml-5  gap-2 ">
-
-<p class="text-gray-300 text-sm ">
-    ${discordappname}
-</p>
-
-<p class="text-green-500 text-sm ">
-    ${time}
-</p>
-</div>
-
-`;
-    }
+  } else if (activity?.type === 3) {
+    elapsed = Date.now() - start;
+    start = activity.timestamps.start;
+    time = formatTime(elapsed);
+    let details = data.data.activities[1].details;
+    let state = data.data.activities[1].state;
+    activitystatus.innerHTML = `
+    <img
+     src="../Pictures/crunchyroll.png"
+     class="activitylogo w-10 h-10 rounded-md gap-3 object-cover"
+     />
+     <div class=" flex flex-col gap-3">
+     <p>Watching Crunchyroll</p>
+     <p class=" text-gray-500">${details}</p>
+     <p id="">${state}</p>
+      <p>${time}</p>
+                </div>
+    `;
   } else {
     activitystatus.innerHTML = `
-      <div class="flex flex-col ml-5 mr-5 items-center gap-1 mb-2 mt-2">
+    <div class="flex flex-col items-center text-center w-full">
+    <img src="../Pictures/nostatus.png" class=" w-30 object-cover"/>
+    <p class="text-lg
+ font-semibold
 
-    
-     <div class ="flex gap-2 ">
-      <p class="text-white text-sm font-bold">
-       <p>Current Activity</p>
-</p>
-</div>
-  <img
-    class="h-full w-20 rounded-md object-cover shrink-0"
-    src="../Pictures/smile.png"
-    alt="Album Cover"
-  />
-  </div>
+">No Activity</p>
+    <p class="text-xs max-w-50
 
-
-  
- <div class="flex  flex-col items-center mr-5 ml-5  gap-2 ">
-
-
-
-  <p class="text-white font-bold text-xs  ">
-   Nothing Right Now
-</p>
-</div>`;
-  }
-
-  if (status === "offline") {
-    statuscolor.style.backgroundImage =
-      "url('https://assumi.ng/assets/discord/offline.png')";
-    statusicon.style.color = "gray";
-  } else {
-    statuscolor.style.backgroundImage =
-      "url('https://assumi.ng/assets/discord/idle.png')";
-    statusicon.style.color = "green";
+">Saito Kurosaki is not displaying any activity on Discord right now.</p>
+    <div>
+    `;
   }
 }
 
@@ -279,4 +146,21 @@ function formatTime(ms) {
   }
 
   return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+}
+
+function Time() {
+  const elapsed = Date.now() - onlineSince;
+
+  const totalSeconds = Math.floor(elapsed / 1000);
+
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  const time =
+    `${String(hours).padStart(2, "0")}:` +
+    `${String(minutes).padStart(2, "0")}:` +
+    `${String(seconds).padStart(2, "0")}`;
+
+  elapseTime.textContent = `${time} Elapsed`;
 }
