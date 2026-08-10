@@ -23,8 +23,9 @@ async function decor() {
   );
 
   const data = await response.json();
-  const deco = data.data.discord_user.avatar_decoration_data.asset;
-  decoration.src = `https://cdn.discordapp.com/avatar-decoration-presets/${deco}.png`;
+  const deco = data.data.discord_user.avatar_decoration_data;
+  if (deco?.assets)
+    decoration.src = `https://cdn.discordapp.com/avatar-decoration-presets/${deco}.png`;
 }
 
 async function discordinfo() {
@@ -48,9 +49,8 @@ async function discordinfo() {
   username.innerText = usernamedc;
   discordpicture.src = `https://cdn.discordapp.com/avatars/${saitokurosaki}/${avatar}.png?size=512`;
 
-  discordapp = activity?.application_id || null;
-
   if (activity?.type === 0) {
+    discordapp = activity?.application_id || null;
     discordappid = await fetch(
       `https://discord.com/api/v9/oauth2/applications/${discordapp}/rpc`,
     );
@@ -73,7 +73,7 @@ async function discordinfo() {
     start = activity.timestamps.start;
     time = formatTime(elapsed);
     let name = activity.name;
-
+    let details = activity?.details || "";
     activitystatus.innerHTML = `
     <img
      src="${icon}"
@@ -82,7 +82,7 @@ async function discordinfo() {
      <div class=" flex flex-col gap-3">
      <p>Playing ${name}</p>
      <p class=" text-gray-500">${name}</p>
-
+${details ? `<p>${details}</p>` : ""}
       <p>${time}</p>
                 </div>
     `;
