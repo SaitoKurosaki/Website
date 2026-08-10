@@ -488,11 +488,29 @@
   .border-\[rgba\(255\,255\,255\,0\.13\)\] {
     border-color: rgba(255,255,255,0.13);
   }
+  .bg-\[\#\#80848e\] {
+    background-color: ##80848e;
+  }
   .bg-\[\#000000\] {
     background-color: #000000;
   }
   .bg-\[\#1e1f22\] {
     background-color: #1e1f22;
+  }
+  .bg-\[\#504c45\] {
+    background-color: #504c45;
+  }
+  .bg-\[\#504c452d\] {
+    background-color: #504c452d;
+  }
+  .bg-\[\#504c4580\] {
+    background-color: #504c4580;
+  }
+  .bg-\[\#504c4591\] {
+    background-color: #504c4591;
+  }
+  .bg-\[\#80848e\] {
+    background-color: #80848e;
   }
   .bg-\[\#131416\] {
     background-color: #131416;
@@ -502,6 +520,18 @@
   }
   .bg-\[\#FEFEFE\] {
     background-color: #FEFEFE;
+  }
+  .bg-\[\#f0b232\] {
+    background-color: #f0b232;
+  }
+  .bg-\[\#f1d9a986\] {
+    background-color: #f1d9a986;
+  }
+  .bg-\[\#f5daa586\] {
+    background-color: #f5daa586;
+  }
+  .bg-\[\#f8eacf86\] {
+    background-color: #f8eacf86;
   }
   .bg-\[\#f8eacf\] {
     background-color: #f8eacf;
@@ -602,6 +632,21 @@
     font-size: var(--text-xs);
     line-height: var(--tw-leading, var(--text-xs--line-height));
   }
+  .text-\[clamp\(0\.5rem\,1\.25vw\,1\.5rem\)\] {
+    font-size: clamp(0.5rem, 1.25vw, 1.5rem);
+  }
+  .text-\[clamp\(1\.2rem\,1\.25vw\,1\.5rem\)\] {
+    font-size: clamp(1.2rem, 1.25vw, 1.5rem);
+  }
+  .text-\[clamp\(1\.5rem\,1\.25vw\,1\.5rem\)\] {
+    font-size: clamp(1.5rem, 1.25vw, 1.5rem);
+  }
+  .text-\[clamp\(1rem\,1\.25vw\,1\.5rem\)\] {
+    font-size: clamp(1rem, 1.25vw, 1.5rem);
+  }
+  .text-\[clamp\(2rem\,1\.25vw\,1\.5rem\)\] {
+    font-size: clamp(2rem, 1.25vw, 1.5rem);
+  }
   .text-\[clamp\(2rem\,5vw\,4rem\)\] {
     font-size: clamp(2rem, 5vw, 4rem);
   }
@@ -652,6 +697,9 @@
   }
   .text-\[\#1A1A1A\] {
     color: #1A1A1A;
+  }
+  .text-\[\#3a3938\] {
+    color: #3a3938;
   }
   .text-\[\#ff5e00\] {
     color: #ff5e00;

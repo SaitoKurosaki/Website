@@ -1,8 +1,8 @@
-const saitokurosaki = "862974778226638858";
+const saitokurosaki = "1325368890666127361";
 const discord = document.querySelector(".discord");
 const name = document.querySelector("#name");
 const username = document.querySelector("#username");
-const status = document.querySelector("#status");
+const status = document.querySelector(".status");
 const discordpicture = document.querySelector(".discordpicture");
 const decoration = document.querySelector(".decoration");
 const onlinestatus = document.querySelector(".onlinestatus");
@@ -45,7 +45,7 @@ async function discordinfo() {
   let activity = data.data.activities[1];
 
   name.innerText = namedc;
-  status.innerText = statusdc.toUpperCase();
+  let discordstatus = statusdc.toUpperCase();
   username.innerText = usernamedc;
   discordpicture.src = `https://cdn.discordapp.com/avatars/${saitokurosaki}/${avatar}.png?size=512`;
 
@@ -64,8 +64,20 @@ async function discordinfo() {
 
   if (statusdc === "idle") {
     onlinestatus.src = "https://assumi.ng/assets/discord/idle.png";
+    status.innerHTML = `
+    
+    <p
+                    class="bg-[#f5daa586] rounded-full h-fit w-fit text-[#ffab04] pr-4 pl-4 pt-0.5 pb-0.5"
+  >IDLE</p>
+    `;
   } else {
     onlinestatus.src = "https://assumi.ng/assets/discord/offline.png";
+    status.innerHTML = `
+    
+    <p
+                    class="bg-[#80848e] rounded-full h-fit w-fit text-[#3a3938] pr-4 pl-4 pt-0.5 pb-0.5"
+  >OFFLINE</p>
+  `;
   }
 
   if (activity?.type === 0) {
