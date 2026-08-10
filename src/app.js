@@ -48,13 +48,18 @@ async function discordinfo() {
   username.innerText = usernamedc;
   discordpicture.src = `https://cdn.discordapp.com/avatars/${saitokurosaki}/${avatar}.png?size=512`;
 
-  discordapp = data.data.activities[1]?.application_id || null;
-  if (data.data.activities[1]?.type !== 100) {
+  discordapp = activity?.application_id || null;
+
+  if (activity?.type === 0) {
     discordappid = await fetch(
       `https://discord.com/api/v9/oauth2/applications/${discordapp}/rpc`,
     );
 
     applicationid = await discordappid.json();
+
+    iconimage = applicationid.icon;
+    discordappname = data.data.activities[1].name;
+    icon = `https://cdn.discordapp.com/app-icons/${discordapp}/${iconimage}.png`;
   }
 
   if (statusdc === "idle") {
@@ -62,7 +67,26 @@ async function discordinfo() {
   } else {
     onlinestatus.src = "https://assumi.ng/assets/discord/offline.png";
   }
-  if (activity?.type === 2) {
+
+  if (activity?.type === 0) {
+    elapsed = Date.now() - start;
+    start = activity.timestamps.start;
+    time = formatTime(elapsed);
+    let name = activity.name;
+
+    activitystatus.innerHTML = `
+    <img
+     src="${icon}"
+     class="activitylogo w-10 h-10 rounded-md gap-3 object-cover"
+     />
+     <div class=" flex flex-col gap-3">
+     <p>Playing ${name}</p>
+     <p class=" text-gray-500">${name}</p>
+
+      <p>${time}</p>
+                </div>
+    `;
+  } else if (activity?.type === 2) {
     start = activity.timestamps.start;
     end = activity.timestamps.end;
     elapsed = Date.now() - start;
