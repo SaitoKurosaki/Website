@@ -71,8 +71,8 @@ async function discordinfo() {
     const progress = Math.min((elapsed / duration) * 100, 100);
     const time = `${formatTime(elapsed)} / ${formatTime(duration)}`;
 
-    let details = data.data.activities[1].details;
-    let state = data.data.activities[1].state;
+    let details = activity.details;
+    let state = activity.state;
 
     activitystatus.innerHTML = `
   <img
@@ -107,8 +107,9 @@ async function discordinfo() {
     elapsed = Date.now() - start;
     start = activity.timestamps.start;
     time = formatTime(elapsed);
-    let details = data.data.activities[1].details;
-    let state = data.data.activities[1].state;
+    let details = activity.details;
+    let state = activity.state;
+    let episode = activity.assets.large_text;
     activitystatus.innerHTML = `
     <img
      src="../Pictures/crunchyroll.png"
@@ -118,6 +119,7 @@ async function discordinfo() {
      <p>Watching Crunchyroll</p>
      <p class=" text-gray-500">${details}</p>
      <p id="">${state}</p>
+     <p>${episode}</p>
       <p>${time}</p>
                 </div>
     `;
