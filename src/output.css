@@ -796,6 +796,9 @@
   .text-\[clamp\(5rem\,6\.667vw\,8rem\)\] {
     font-size: clamp(5rem, 6.667vw, 8rem);
   }
+  .text-\[clamp\(9rem\,0\.93vw\,1\.12rem\)\] {
+    font-size: clamp(9rem, 0.93vw, 1.12rem);
+  }
   .leading-1 {
     --tw-leading: var(--spacing);
     line-height: var(--spacing);
