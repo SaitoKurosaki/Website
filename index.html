@@ -16,10 +16,10 @@
     >
       <header class="">
         <nav
-          class="flex justify-evenly items-center p-10 shadow-sm rounded-lg bg-[#FEFEFE] border-[#8080801f] border"
+          class="flex justify-evenly items-center p-10 max-md:p-5 shadow-sm rounded-lg bg-[#FEFEFE] border-[#8080801f] border w-full max-md:justify-end"
         >
           <ul
-            class="flex gap-20 items-center text-[#1A1A1A] font-semibold text-lg list-none"
+            class="flex gap-20 max-lg:gap-10 items-center text-[#1A1A1A] font-semibold text-lg list-none max-md:hidden"
           >
             <li><a href="#">HOME</a></li>
             <li><a href="#">ABOUT</a></li>
@@ -28,14 +28,13 @@
             <li><a href="#">STATS</a></li>
             <li><a href="#">CONTACT</a></li>
           </ul>
-          <!--<button type="button" class="cursor-pointer">
-            <img
-              src="../svg/light.svg"
+          <a
+            ><img
+              src="../svg/burger-menu.svg"
               alt="light"
-              class="w-12 h-12 p-3 border border-[#cdcfd3] rounded-lg"
-            />
-          </button>
-        --></nav>
+              class="w-12 h-12 p-3 border border-[#cdcfd3] rounded-lg md:hidden"
+          /></a>
+        </nav>
         <section id="home" class="min-h-screen rounded-lg">
           <div
             class="relative z-10 flex items-center justify-between min-h-screen mr-5 ml-5 max-lg:flex-col max-lg:gap-20 py-10 max-md:gap-0"
@@ -47,7 +46,9 @@
             <div
               class="herocontent flex flex-col gap-5 relative w-full justify-center min-h-130"
             >
-              <p class="text-gray-500 text-[clamp(1rem,1.041vw,1.25rem)]">
+              <p
+                class="text-gray-500 text-[clamp(1rem,1.041vw,1.25rem)] leading-1.4"
+              >
                 HELLO, IM
               </p>
               <p
@@ -55,11 +56,15 @@
               >
                 SAITO KUROSAKI
               </p>
-              <p class="font-bold text-[clamp(0.8rem,1.25vw,1.5rem)]">
+              <p
+                class="font-bold text-[clamp(0.8rem,1.25vw,1.5rem)] leading-1.33"
+              >
                 <span class="mr-5 max-lg:mr-2">></span>
                 Web Developer & Software Developer
               </p>
-              <p class="text-gray-500 text-[clamp(1rem,1.041vw,1.25rem)]">
+              <p
+                class="text-gray-500 text-[clamp(1rem,1.041vw,1.25rem)] leading-1.4"
+              >
                 I enjoy building websites and software, as well as exploring the
                 internet
               </p>
