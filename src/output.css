@@ -26,10 +26,6 @@
     --text-lg--line-height: calc(1.75 / 1.125);
     --text-xl: 1.25rem;
     --text-xl--line-height: calc(1.75 / 1.25);
-    --text-2xl: 1.5rem;
-    --text-2xl--line-height: calc(2 / 1.5);
-    --text-9xl: 8rem;
-    --text-9xl--line-height: 1;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
     --radius-md: 0.375rem;
@@ -244,6 +240,9 @@
   .z-10 {
     z-index: 10;
   }
+  .m-5 {
+    margin: calc(var(--spacing) * 5);
+  }
   .mx-auto {
     margin-inline: auto;
   }
@@ -322,6 +321,9 @@
   .h-full {
     height: 100%;
   }
+  .h-screen {
+    height: 100vh;
+  }
   .max-h-max {
     max-height: max-content;
   }
@@ -378,6 +380,12 @@
   }
   .max-w-50 {
     max-width: calc(var(--spacing) * 50);
+  }
+  .max-w-100 {
+    max-width: calc(var(--spacing) * 100);
+  }
+  .max-w-150 {
+    max-width: calc(var(--spacing) * 150);
   }
   .max-w-180 {
     max-width: calc(var(--spacing) * 180);
@@ -488,26 +496,11 @@
   .border-\[rgba\(255\,255\,255\,0\.13\)\] {
     border-color: rgba(255,255,255,0.13);
   }
-  .bg-\[\#\#80848e\] {
-    background-color: ##80848e;
-  }
   .bg-\[\#000000\] {
     background-color: #000000;
   }
   .bg-\[\#1e1f22\] {
     background-color: #1e1f22;
-  }
-  .bg-\[\#504c45\] {
-    background-color: #504c45;
-  }
-  .bg-\[\#504c452d\] {
-    background-color: #504c452d;
-  }
-  .bg-\[\#504c4580\] {
-    background-color: #504c4580;
-  }
-  .bg-\[\#504c4591\] {
-    background-color: #504c4591;
   }
   .bg-\[\#80848e\] {
     background-color: #80848e;
@@ -521,20 +514,8 @@
   .bg-\[\#FEFEFE\] {
     background-color: #FEFEFE;
   }
-  .bg-\[\#f0b232\] {
-    background-color: #f0b232;
-  }
-  .bg-\[\#f1d9a986\] {
-    background-color: #f1d9a986;
-  }
   .bg-\[\#f5daa586\] {
     background-color: #f5daa586;
-  }
-  .bg-\[\#f8eacf86\] {
-    background-color: #f8eacf86;
-  }
-  .bg-\[\#f8eacf\] {
-    background-color: #f8eacf;
   }
   .bg-black {
     background-color: var(--color-black);
@@ -608,14 +589,6 @@
   .font-serif {
     font-family: var(--font-serif);
   }
-  .text-2xl {
-    font-size: var(--text-2xl);
-    line-height: var(--tw-leading, var(--text-2xl--line-height));
-  }
-  .text-9xl {
-    font-size: var(--text-9xl);
-    line-height: var(--tw-leading, var(--text-9xl--line-height));
-  }
   .text-lg {
     font-size: var(--text-lg);
     line-height: var(--tw-leading, var(--text-lg--line-height));
@@ -632,53 +605,17 @@
     font-size: var(--text-xs);
     line-height: var(--tw-leading, var(--text-xs--line-height));
   }
-  .text-\[clamp\(0\.5rem\,1\.25vw\,1\.5rem\)\] {
-    font-size: clamp(0.5rem, 1.25vw, 1.5rem);
-  }
   .text-\[clamp\(1\.2rem\,1\.25vw\,1\.5rem\)\] {
     font-size: clamp(1.2rem, 1.25vw, 1.5rem);
-  }
-  .text-\[clamp\(1\.5rem\,1\.25vw\,1\.5rem\)\] {
-    font-size: clamp(1.5rem, 1.25vw, 1.5rem);
-  }
-  .text-\[clamp\(1rem\,1\.25vw\,1\.5rem\)\] {
-    font-size: clamp(1rem, 1.25vw, 1.5rem);
-  }
-  .text-\[clamp\(2rem\,1\.25vw\,1\.5rem\)\] {
-    font-size: clamp(2rem, 1.25vw, 1.5rem);
-  }
-  .text-\[clamp\(2rem\,5vw\,4rem\)\] {
-    font-size: clamp(2rem, 5vw, 4rem);
-  }
-  .text-\[clamp\(2rem\,5vw\,5rem\)\] {
-    font-size: clamp(2rem, 5vw, 5rem);
-  }
-  .text-\[clamp\(2rem\,5vw\,8rem\)\] {
-    font-size: clamp(2rem, 5vw, 8rem);
-  }
-  .text-\[clamp\(2rem\,6\.667vw\,5rem\)\] {
-    font-size: clamp(2rem, 6.667vw, 5rem);
   }
   .text-\[clamp\(2rem\,6\.667vw\,8rem\)\] {
     font-size: clamp(2rem, 6.667vw, 8rem);
   }
-  .text-\[clamp\(2rem\,8vw\,8rem\)\] {
-    font-size: clamp(2rem, 8vw, 8rem);
+  .text-\[clamp\(4rem\,6\.667vw\,8rem\)\] {
+    font-size: clamp(4rem, 6.667vw, 8rem);
   }
-  .text-\[clamp\(2rem\,50rem\,5rem\)\] {
-    font-size: clamp(2rem, 50rem, 5rem);
-  }
-  .text-\[clamp\(2rem\,100\,5rem\)\] {
-    font-size: clamp(2rem, 100, 5rem);
-  }
-  .text-\[clamp\(2rem\,100rem\,5rem\)\] {
-    font-size: clamp(2rem, 100rem, 5rem);
-  }
-  .text-\[clamp\(2rem\,128px\,5rem\)\] {
-    font-size: clamp(2rem, 128px, 5rem);
-  }
-  .text-\[clamp\(20rem\,100rem\,5rem\)\] {
-    font-size: clamp(20rem, 100rem, 5rem);
+  .text-\[clamp\(5rem\,6\.667vw\,8rem\)\] {
+    font-size: clamp(5rem, 6.667vw, 8rem);
   }
   .leading-none {
     --tw-leading: 1;
@@ -812,6 +749,21 @@
         --tw-translate-y: calc(var(--spacing) * -4);
         translate: var(--tw-translate-x) var(--tw-translate-y);
       }
+    }
+  }
+  .max-changepic\:top-0 {
+    @media (width < 97.875rem) {
+      top: 0;
+    }
+  }
+  .max-changepic\:right-0 {
+    @media (width < 97.875rem) {
+      right: 0;
+    }
+  }
+  .max-changepic\:h-auto {
+    @media (width < 97.875rem) {
+      height: auto;
     }
   }
 }

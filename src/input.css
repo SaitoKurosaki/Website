@@ -3,3 +3,7 @@
 .fonttext {
   font-family: "Inter", sans-serif;
 }
+
+@theme {
+  --breakpoint-changepic: 97.875rem;
+}
