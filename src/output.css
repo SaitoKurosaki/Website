@@ -333,6 +333,12 @@
   .min-h-120 {
     min-height: calc(var(--spacing) * 120);
   }
+  .min-h-130 {
+    min-height: calc(var(--spacing) * 130);
+  }
+  .min-h-140 {
+    min-height: calc(var(--spacing) * 140);
+  }
   .min-h-dvh {
     min-height: 100dvh;
   }
