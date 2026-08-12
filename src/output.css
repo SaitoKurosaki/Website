@@ -715,6 +715,9 @@
     font-size: var(--text-xs);
     line-height: var(--tw-leading, var(--text-xs--line-height));
   }
+  .text-\[clamp\(0\.2rem\,0\.83vw\,1\.12rem\)\] {
+    font-size: clamp(0.2rem, 0.83vw, 1.12rem);
+  }
   .text-\[clamp\(0\.5rem\,1\.25vw\,1\.5rem\)\] {
     font-size: clamp(0.5rem, 1.25vw, 1.5rem);
   }
@@ -1111,6 +1114,11 @@
       min-height: 100;
     }
   }
+  .max-md\:w-7 {
+    @media (width < 48rem) {
+      width: calc(var(--spacing) * 7);
+    }
+  }
   .max-md\:w-9 {
     @media (width < 48rem) {
       width: calc(var(--spacing) * 9);
@@ -1246,6 +1254,11 @@
   .max-sm\:min-h-150 {
     @media (width < 40rem) {
       min-height: calc(var(--spacing) * 150);
+    }
+  }
+  .max-sm\:w-8 {
+    @media (width < 40rem) {
+      width: calc(var(--spacing) * 8);
     }
   }
   .max-sm\:w-9 {
