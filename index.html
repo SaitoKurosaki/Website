@@ -92,11 +92,13 @@
               </div>
             </div>
             <div
-              class="discord min-h-120 max-h-max w-full max-w-100 bg-[#FEFEFE] shadow-sm rounded-lg border-[#8080801f] border flex flex-col"
+              class="discord min-h-125 max-h-max w-full max-w-100 bg-[#FEFEFE] shadow-sm rounded-lg border-[#8080801f] border flex flex-col justify-center"
             >
               <div class="discordlogo flex p-5 gap-3 text-sm items-center">
                 <img src="../svg/discord.svg" class="w-10" />
-                <p>DISCORD PRESENCE</p>
+                <p class="text-[clamp(0.8rem,0.83vw,1.12rem)]">
+                  DISCORD PRESENCE
+                </p>
               </div>
               <div class="h-0.5 w-[90%] bg-gray-400 opacity-40 mx-auto">
                 <!--Separator -->
@@ -110,9 +112,12 @@
                   <img class="decoration absolute inset-0" />
                 </div>
 
-                <div class="discordname flex flex-col gap-2">
-                  <p id="name"></p>
-                  <p id="username"></p>
+                <div class="discordname flex flex-col gap-2 justify-center">
+                  <p id="name" class="text-[clamp(0.7rem,0.93vw,1.12rem)]"></p>
+                  <p
+                    id="username"
+                    class="text-[clamp(0.8rem,0.83vw,1.12rem)]"
+                  ></p>
                   <div class="status"></div>
                 </div>
               </div>
@@ -125,7 +130,7 @@
               </div>
               <div class="timeelapse p-5 flex items-center gap-3">
                 <img src="svg/time.svg" class="w-10" />
-                <p id="elapseTime"></p>
+                <p id="elapseTime" class="text-[clamp(0.7rem,0.83vw,1rem)]"></p>
               </div>
             </div>
           </div>

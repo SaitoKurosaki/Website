@@ -67,7 +67,7 @@ async function discordinfo() {
     status.innerHTML = `
     
     <p
-                    class="bg-[#f5daa586] rounded-full h-fit w-fit text-[#ffab04] pr-4 pl-4 pt-0.5 pb-0.5"
+                    class="bg-[#f5daa586] rounded-full h-fit w-fit text-[#ffab04] pr-4 pl-4 pt-0.5 pb-0.5 text-[clamp(0.8rem,0.83vw,1rem)] " 
   >IDLE</p>
     `;
   } else {
@@ -75,7 +75,7 @@ async function discordinfo() {
     status.innerHTML = `
     
     <p
-                    class="bg-[#80848e] rounded-full h-fit w-fit text-[#3a3938] pr-4 pl-4 pt-0.5 pb-0.5"
+                    class="bg-[#80848e] rounded-full h-fit w-fit text-[#3a3938] pr-4 pl-4 pt-0.5 pb-0.5 text-[clamp(0.8rem,0.83vw,1rem)]"
   >OFFLINE</p>
   `;
   }

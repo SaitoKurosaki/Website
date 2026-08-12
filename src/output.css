@@ -22,6 +22,8 @@
     --text-xs--line-height: calc(1 / 0.75);
     --text-sm: 0.875rem;
     --text-sm--line-height: calc(1.25 / 0.875);
+    --text-base: 1rem;
+    --text-base--line-height: calc(1.5 / 1);
     --text-lg: 1.125rem;
     --text-lg--line-height: calc(1.75 / 1.125);
     --text-xl: 1.25rem;
@@ -352,6 +354,9 @@
   }
   .min-h-120 {
     min-height: calc(var(--spacing) * 120);
+  }
+  .min-h-125 {
+    min-height: calc(var(--spacing) * 125);
   }
   .min-h-130 {
     min-height: calc(var(--spacing) * 130);
@@ -690,6 +695,10 @@
   .font-serif {
     font-family: var(--font-serif);
   }
+  .text-base {
+    font-size: var(--text-base);
+    line-height: var(--tw-leading, var(--text-base--line-height));
+  }
   .text-lg {
     font-size: var(--text-lg);
     line-height: var(--tw-leading, var(--text-lg--line-height));
@@ -712,14 +721,50 @@
   .text-\[clamp\(0\.5rem\,1\.041vw\,1\.25rem\)\] {
     font-size: clamp(0.5rem, 1.041vw, 1.25rem);
   }
+  .text-\[clamp\(0\.7rem\,0\.83vw\,1rem\)\] {
+    font-size: clamp(0.7rem, 0.83vw, 1rem);
+  }
+  .text-\[clamp\(0\.7rem\,0\.93vw\,1\.12rem\)\] {
+    font-size: clamp(0.7rem, 0.93vw, 1.12rem);
+  }
+  .text-\[clamp\(0\.7rem\,1\.041vw\,1\.25rem\)\] {
+    font-size: clamp(0.7rem, 1.041vw, 1.25rem);
+  }
+  .text-\[clamp\(0\.8rem\,0\.83vw\,1\.12rem\)\] {
+    font-size: clamp(0.8rem, 0.83vw, 1.12rem);
+  }
+  .text-\[clamp\(0\.8rem\,0\.83vw\,1rem\)\] {
+    font-size: clamp(0.8rem, 0.83vw, 1rem);
+  }
+  .text-\[clamp\(0\.8rem\,0\.93vw\,1\.12rem\)\] {
+    font-size: clamp(0.8rem, 0.93vw, 1.12rem);
+  }
   .text-\[clamp\(0\.8rem\,1\.25vw\,1\.5rem\)\] {
     font-size: clamp(0.8rem, 1.25vw, 1.5rem);
   }
   .text-\[clamp\(0\.8rem\,1\.041vw\,1\.25rem\)\] {
     font-size: clamp(0.8rem, 1.041vw, 1.25rem);
   }
+  .text-\[clamp\(0\.9rem\,0\.93vw\,1\.12rem\)\] {
+    font-size: clamp(0.9rem, 0.93vw, 1.12rem);
+  }
+  .text-\[clamp\(0\/8rem\,0\.93vw\,1\.12rem\)\] {
+    font-size: clamp(0 / 8rem, 0.93vw, 1.12rem);
+  }
+  .text-\[clamp\(0\/9rem\,0\.93vw\,1\.12rem\)\] {
+    font-size: clamp(0 / 9rem, 0.93vw, 1.12rem);
+  }
   .text-\[clamp\(1\.2rem\,1\.25vw\,1\.5rem\)\] {
     font-size: clamp(1.2rem, 1.25vw, 1.5rem);
+  }
+  .text-\[clamp\(1rem\,0\.83vw\,1\.12rem\)\] {
+    font-size: clamp(1rem, 0.83vw, 1.12rem);
+  }
+  .text-\[clamp\(1rem\,0\.83vw\,1rem\)\] {
+    font-size: clamp(1rem, 0.83vw, 1rem);
+  }
+  .text-\[clamp\(1rem\,0\.93vw\,1\.12rem\)\] {
+    font-size: clamp(1rem, 0.93vw, 1.12rem);
   }
   .text-\[clamp\(1rem\,1\.25vw\,1\.5rem\)\] {
     font-size: clamp(1rem, 1.25vw, 1.5rem);
@@ -738,6 +783,14 @@
   }
   .text-\[clamp\(5rem\,6\.667vw\,8rem\)\] {
     font-size: clamp(5rem, 6.667vw, 8rem);
+  }
+  .leading-1 {
+    --tw-leading: var(--spacing);
+    line-height: var(--spacing);
+  }
+  .leading-1\.5 {
+    --tw-leading: calc(var(--spacing) * 1.5);
+    line-height: calc(var(--spacing) * 1.5);
   }
   .leading-\[1\.4\] {
     --tw-leading: 1.4;
