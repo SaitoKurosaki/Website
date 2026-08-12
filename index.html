@@ -12,9 +12,9 @@
   </head>
   <body class="bg-[#F4F5F6] pl-3 pr-3 pt-2 pb-2 fonttext">
     <div
-      class="bg-[#FEFEFE] h-dvh rounded-lg shadow-2xs overflow-hidden border-[#8080801f] border"
+      class="bg-[#FEFEFE] min-h-dvh rounded-lg shadow-2xs overflow-hidden border-[#8080801f] border"
     >
-      <header>
+      <header class="">
         <nav
           class="flex justify-evenly items-center p-10 shadow-sm rounded-lg bg-[#FEFEFE] border-[#8080801f] border"
         >
@@ -36,30 +36,30 @@
             />
           </button>
         --></nav>
-        <section id="home" class="relative h-dvh rounded-lg">
+        <section id="home" class="min-h-screen rounded-lg">
           <div
-            class="relative z-10 flex items-center justify-between align-center h-full mr-5 ml-5 max-lg:flex-col"
+            class="relative z-10 flex items-center justify-between min-h-screen mr-5 ml-5 max-lg:flex-col max-lg:gap-20 py-10 max-md:gap-0"
           >
+            <img
+              src="../Pictures/1.png"
+              class="absolute inset-0 max-lg:top-0 max-lg:right-0 w-full max-lg:h-auto h-full object-contain mix-blend-multiply pointer-events-none"
+            />
             <div
-              class="herocontent flex flex-col gap-5 relative w-full h-screen justify-center"
+              class="herocontent flex flex-col gap-5 relative w-full justify-center min-h-120"
             >
-              <img
-                src="../Pictures/1.png"
-                class="absolute inset-0 max-changepic:top-0 max-changepic:right-0 w-full max-changepic:h-auto h-full object-contain mix-blend-multiply pointer-events-none"
-              />
-              <p class="text-gray-500 text-[clamp(1rem,1.041vw,1.25rem)]">
+              <p class="text-gray-500 text-[clamp(0.8rem,1.041vw,1.25rem)]">
                 HELLO, IM
               </p>
               <p
-                class="fonttext leading-none font-semibold text-[clamp(4rem,6.667vw,8rem)] max-w-100"
+                class="fonttext leading-none font-semibold text-[clamp(1rem,6.667vw,8rem)] max-w-100"
               >
                 SAITO KUROSAKI
               </p>
-              <p class="font-bold text-[clamp(1rem,1.25vw,1.5rem)]">
-                <span class="mr-5">></span>
+              <p class="font-bold text-[clamp(0.8rem,1.25vw,1.5rem)]">
+                <span class="mr-5 max-lg:mr-2">></span>
                 Web Developer & Software Developer
               </p>
-              <p class="text-gray-500 text-[clamp(1rem,1.041vw,1.25rem)]">
+              <p class="text-gray-500 text-[clamp(0.8rem,1.041vw,1.25rem)]">
                 I enjoy building websites and software, as well as exploring the
                 internet
               </p>
@@ -87,13 +87,13 @@
               </div>
             </div>
             <div
-              class="discord min-h-120 max-h-max w-100 bg-[#FEFEFE] shadow-sm rounded-lg border-[#8080801f] border flex flex-col"
+              class="discord min-h-120 max-h-max w-full max-w-100 bg-[#FEFEFE] shadow-sm rounded-lg border-[#8080801f] border flex flex-col"
             >
               <div class="discordlogo flex p-5 gap-3 text-sm items-center">
                 <img src="../svg/discord.svg" class="w-10" />
                 <p>DISCORD PRESENCE</p>
               </div>
-              <div class="h-0.5 w-90 bg-gray-400 opacity-40 mx-auto">
+              <div class="h-0.5 w-[90%] bg-gray-400 opacity-40 mx-auto">
                 <!--Separator -->
               </div>
               <div class="profile flex p-5 gap-5">
@@ -111,11 +111,11 @@
                   <div class="status"></div>
                 </div>
               </div>
-              <div class="h-0.5 w-90 bg-gray-400 opacity-40 mx-auto">
+              <div class="h-0.5 w-[90%] bg-gray-400 opacity-40 mx-auto">
                 <!--Separator -->
               </div>
               <div class="activitystatus flex gap-3 p-5"></div>
-              <div class="h-0.5 w-90 bg-gray-400 opacity-40 mx-auto">
+              <div class="h-0.5 w-[90%] bg-gray-400 opacity-40 mx-auto">
                 <!--Separator -->
               </div>
               <div class="timeelapse p-5 flex items-center gap-3">
