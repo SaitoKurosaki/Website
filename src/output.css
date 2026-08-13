@@ -418,11 +418,17 @@
   .items-center {
     align-items: center;
   }
+  .items-end {
+    align-items: flex-end;
+  }
   .justify-between {
     justify-content: space-between;
   }
   .justify-center {
     justify-content: center;
+  }
+  .justify-end {
+    justify-content: flex-end;
   }
   .gap-1 {
     gap: var(--spacing);
@@ -848,6 +854,16 @@
   .max-sm\:justify-end {
     @media (width < 40rem) {
       justify-content: flex-end;
+    }
+  }
+  .max-sm\:gap-1 {
+    @media (width < 40rem) {
+      gap: var(--spacing);
+    }
+  }
+  .max-sm\:gap-2 {
+    @media (width < 40rem) {
+      gap: calc(var(--spacing) * 2);
     }
   }
   .max-sm\:p-2 {
