@@ -61,13 +61,28 @@ async function discordinfo() {
     discordappname = data.data.activities[1].name;
     icon = `https://cdn.discordapp.com/app-icons/${discordapp}/${iconimage}.png`;
   }
-
-  if (statusdc === "idle") {
+  if (statusdc === "online") {
+    onlinestatus.src = "https://assumi.ng/assets/discord/online.png";
+    status.innerHTML = `
+    
+    <p
+                    class="bg-[#23a5595d] rounded-full h-fit w-fit text-[#23a55a] pr-4 pl-4 pt-0.5 pb-0.5 text-[clamp(0.8rem,0.83vw,1rem)] " 
+  >ONLINE</p>
+    `;
+  } else if (statusdc === "dnd") {
+    onlinestatus.src = "https://assumi.ng/assets/discord/dnd.png";
+    status.innerHTML = `
+    
+    <p
+                    class="bg-[#f23f4260] rounded-full h-fit w-fit text-[#f23f43] pr-4 pl-4 pt-0.5 pb-0.5 text-[clamp(0.8rem,0.83vw,1rem)] " 
+  >DND </p>
+    `;
+  } else if (statusdc === "idle") {
     onlinestatus.src = "https://assumi.ng/assets/discord/idle.png";
     status.innerHTML = `
     
     <p
-                    class="bg-[#f5daa586] rounded-full h-fit w-fit text-[#ffab04] pr-4 pl-4 pt-0.5 pb-0.5 text-[clamp(0.9rem,0.83vw,1rem)] " 
+                    class="bg-[#ffab0463] rounded-full h-fit w-fit text-[#ffab04] pr-4 pl-4 pt-0.5 pb-0.5 text-[clamp(0.8rem,0.83vw,1rem)] " 
   >IDLE</p>
     `;
   } else {
@@ -75,7 +90,7 @@ async function discordinfo() {
     status.innerHTML = `
     
     <p
-                    class="bg-[#80848e] rounded-full h-fit w-fit text-[#3a3938] pr-4 pl-4 pt-0.5 pb-0.5 text-[clamp(0.9rem,0.83vw,1rem)]"
+                    class="bg-[#80848e62] rounded-full h-fit w-fit text-[#3a3938] pr-4 pl-4 pt-0.5 pb-0.5 text-[clamp(0.8rem,0.83vw,1rem)]"
   >OFFLINE</p>
   `;
   }

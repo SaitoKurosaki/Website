@@ -3,20 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Saito Kurosaki</title>
+
     <link rel="stylesheet" href="../src/output.css" />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
   </head>
+
   <body class="bg-[#F4F5F6] p-2 fonttext">
     <div
-      class="bg-[#FEFEFE] min-h-dvh rounded-lg shadow-2xs overflow-hidden border-[#8080801f] border"
+      class="bg-[#FEFEFE] min-h-dvh rounded-lg shadow-2xs overflow-hidden border border-[#8080801f]"
     >
-      <header class="">
+      <header>
         <nav
-          class="flex items-center justify-center p-10 max-md:p-5 max-sm:p-2 rounded-lg bg-[#FEFEFE] border-[#8080801f] border w-full max-md:justify-end"
+          class="flex items-center justify-center p-10 max-md:p-5 max-sm:p-2 rounded-lg bg-[#FEFEFE] border border-[#8080801f] w-full max-md:justify-end shadow-sm relative z-11"
         >
           <ul
             class="flex gap-20 max-lg:gap-10 items-center text-[#1A1A1A] font-semibold text-lg list-none max-md:hidden"
@@ -28,118 +32,153 @@
             <li><a href="#">STATS</a></li>
             <li><a href="#">CONTACT</a></li>
           </ul>
-          <a
-            ><img
+
+          <a href="#">
+            <img
               src="../svg/burger-menu.svg"
-              alt="light"
+              alt="Menu"
               class="w-12 max-md:w-10 p-3 max-md:p-2 border border-[#cdcfd3] rounded-lg md:hidden"
-          /></a>
+            />
+          </a>
         </nav>
-        <section id="home" class="min-h-screen rounded-lg">
+
+        <section id="home" class="min-h-dvh rounded-lg max-lg:min-h-0">
           <div
-            class="relative z-10 flex items-center justify-end min-h-screen mr-5 ml-5 max-lg:flex-col max-lg:gap-10 max-lg:pb-10"
+            class="relative z-10 flex items-center min-h-dvh max-sm:mx-2 mx-5 max-lg:min-h-0 max-lg:flex-col max-lg:gap-10 max-lg:py-10"
           >
             <img
               src="../Pictures/1.png"
-              class="absolute max-lg:top-0 max-lg:right-0 max-sm:left-10 max-lg:h-auto h-full object-cover mix-blend-multiply pointer-events-none"
+              alt=""
+              class="absolute max-sm:left-15 w-full h-full max-changepic:object-cover object-contain mix-blend-multiply pointer-events-none max-lg:h-auto max-lg:top-0"
             />
+
             <div
-              class="herocontent flex flex-col gap-5 relative w-full justify-center max-sm:justify-end min-h-screen max-lg:min-h-120"
+              class="herocontent max-lg:justify-end flex flex-col gap-5 w-full justify-center max-lg:min-h-120 max-sm:min-h-100"
             >
               <p
                 class="text-gray-500 text-[clamp(1rem,1.041vw,1.25rem)] leading-1.4"
               >
                 HELLO, IM
               </p>
+
               <p
                 class="fonttext leading-none font-semibold text-[clamp(2rem,6.667vw,8rem)] max-w-100"
               >
                 SAITO KUROSAKI
               </p>
+
               <div class="flex items-center gap-5 max-lg:gap-3 max-sm:gap-1">
                 <img
                   src="../svg/greaterthan.svg"
+                  alt=">"
                   class="w-10 max-lg:w-8 max-md:w-7 max-sm:w-6"
                 />
+
                 <p
                   class="font-bold text-[clamp(0.8rem,1.25vw,1.5rem)] leading-1.33"
                 >
                   Web Developer & Software Developer
                 </p>
               </div>
+
               <p
                 class="text-gray-500 text-[clamp(1rem,1.041vw,1.25rem)] leading-1.4"
               >
                 I enjoy building websites and software, as well as exploring the
                 internet
               </p>
+
               <div class="socials flex gap-5">
-                <a href="#"
-                  ><img
+                <a href="#">
+                  <img
                     src="../svg/github.svg"
-                    class="w-[clamp(3rem,3.125vw,3.75rem)] p-3 bg-[#FEFEFE] rounded-lg shadow-sm border-[#8080801f] border hover:-translate-y-4 transition-transform duration-300"
-                /></a>
-                <a href="#"
-                  ><img
+                    alt="GitHub"
+                    class="w-[clamp(3rem,3.125vw,3.75rem)] p-3 bg-[#FEFEFE] rounded-lg shadow-sm border border-[#8080801f] hover:-translate-y-4 transition-transform duration-300"
+                  />
+                </a>
+
+                <a href="#">
+                  <img
                     src="../svg/discord.svg"
-                    class="w-[clamp(3rem,3.125vw,3.75rem)] p-3 bg-[#FEFEFE] rounded-lg shadow-sm border-[#8080801f] border hover:-translate-y-4 transition-transform duration-300"
-                /></a>
-                <a href="#"
-                  ><img
+                    alt="Discord"
+                    class="w-[clamp(3rem,3.125vw,3.75rem)] p-3 bg-[#FEFEFE] rounded-lg shadow-sm border border-[#8080801f] hover:-translate-y-4 transition-transform duration-300"
+                  />
+                </a>
+
+                <a href="#">
+                  <img
                     src="../svg/youtube.svg"
-                    class="w-[clamp(3rem,3.125vw,3.75rem)] p-3 bg-[#FEFEFE] rounded-lg shadow-sm border-[#8080801f] border hover:-translate-y-4 transition-transform duration-300"
-                /></a>
-                <a href="#"
-                  ><img
+                    alt="YouTube"
+                    class="w-[clamp(3rem,3.125vw,3.75rem)] p-3 bg-[#FEFEFE] rounded-lg shadow-sm border border-[#8080801f] hover:-translate-y-4 transition-transform duration-300"
+                  />
+                </a>
+
+                <a href="#">
+                  <img
                     src="../svg/tiktok.svg"
-                    class="w-[clamp(3rem,3.125vw,3.75rem)] p-3 bg-[#FEFEFE] rounded-lg shadow-sm border-[#8080801f] border hover:-translate-y-4 transition-transform duration-300"
-                /></a>
+                    alt="TikTok"
+                    class="w-[clamp(3rem,3.125vw,3.75rem)] p-3 bg-[#FEFEFE] rounded-lg shadow-sm border border-[#8080801f] hover:-translate-y-4 transition-transform duration-300"
+                  />
+                </a>
               </div>
             </div>
+
             <div
-              class="discord min-h-125 max-sm:min-h-100 max-h-max w-full max-w-100 bg-[#FEFEFE] shadow-sm rounded-lg border-[#8080801f] border flex flex-col justify-center"
+              class="discord relative min-h-125 max-sm:min-h-100 w-full max-w-100 bg-[#FEFEFE] shadow-sm rounded-lg border border-[#8080801f] flex flex-col justify-center"
             >
               <div class="discordlogo flex p-5 gap-3 text-sm items-center">
                 <img
                   src="../svg/discord.svg"
+                  alt="Discord"
                   class="w-10 max-md:w-9 max-sm:w-8"
                 />
-                <p class="text-[clamp(0.9rem,0.83vw,1rem)]">DISCORD PRESENCE</p>
+
+                <p class="text-[clamp(0.8rem,0.83vw,1rem)]">DISCORD PRESENCE</p>
               </div>
-              <div class="h-0.5 w-[90%] bg-gray-400 opacity-40 mx-auto">
-                <!--Separator -->
-              </div>
+
+              <div class="h-0.5 w-[90%] bg-gray-400 opacity-40 mx-auto"></div>
+
               <div class="profile flex p-5 gap-5">
                 <div class="profilepic relative">
                   <img class="discordpicture rounded-full w-25 max-md:w-20" />
+
                   <img
-                    class="onlinestatus absolute bottom-1 right-0 w-7 bg-[#FEFEFE] rounded-full border-2 border-[#FEFEFE] text-sm"
+                    class="onlinestatus absolute bottom-1 right-0 w-7 bg-[#FEFEFE] rounded-full border-2 border-[#FEFEFE]"
                   />
+
                   <img class="decoration absolute inset-0" />
                 </div>
 
                 <div class="discordname flex flex-col gap-2 justify-center">
-                  <p id="name" class="text-[clamp(0.9rem,0.93vw,1.12rem)]"></p>
-                  <p id="username" class="text-[clamp(0.9rem,0.83vw,1rem)]"></p>
+                  <p id="name" class="text-[clamp(1rem,0.93vw,1.12rem)]"></p>
+
+                  <p id="username" class="text-[clamp(0.8rem,0.83vw,1rem)]"></p>
+
                   <div class="status"></div>
                 </div>
               </div>
-              <div class="h-0.5 w-[90%] bg-gray-400 opacity-40 mx-auto">
-                <!--Separator -->
-              </div>
+
+              <div class="h-0.5 w-[90%] bg-gray-400 opacity-40 mx-auto"></div>
+
               <div class="activitystatus flex gap-3 p-5"></div>
-              <div class="h-0.5 w-[90%] bg-gray-400 opacity-40 mx-auto">
-                <!--Separator -->
-              </div>
+
+              <div class="h-0.5 w-[90%] bg-gray-400 opacity-40 mx-auto"></div>
+
               <div class="timeelapse p-5 flex items-center gap-3">
-                <img src="svg/time.svg" class="w-10 max-md:w-9 max-sm:w-8" />
-                <p id="elapseTime" class="text-[clamp(0.9rem,0.83vw,1rem)]"></p>
+                <img
+                  src="../svg/time.svg"
+                  alt="Time"
+                  class="w-10 max-md:w-9 max-sm:w-8"
+                />
+
+                <p id="elapseTime" class="text-[clamp(0.8rem,0.83vw,1rem)]"></p>
               </div>
             </div>
           </div>
         </section>
       </header>
     </div>
+
     <script src="../src/app.js"></script>
   </body>
 </html>
