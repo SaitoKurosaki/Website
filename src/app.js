@@ -23,8 +23,8 @@ async function decor() {
   );
 
   const data = await response.json();
-  const deco = data.data.discord_user.avatar_decoration_data;
-  if (deco?.assets)
+  const deco = data.data.discord_user.avatar_decoration_data?.asset;
+  if (deco)
     decoration.src = `https://cdn.discordapp.com/avatar-decoration-presets/${deco}.png`;
 }
 
