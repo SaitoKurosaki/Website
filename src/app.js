@@ -42,9 +42,14 @@ async function discordinfo() {
   let iconimage;
   let icon;
   let applicationid;
-  let activity = data.data.activities.find(
-    (activity) =>
-      activity.type === 0 || activity.type === 2 || activity.type === 3,
+  const activities = data.data.activities;
+
+  const gameActivity = activities.find((activities) => activities.type === 0);
+  const spotifyActivity = activities.find(
+    (activities) => activities.type === 2,
+  );
+  const watchingActivity = activities.find(
+    (activities) => activities.type === 3,
   );
 
   name.innerText = namedc;
@@ -52,8 +57,8 @@ async function discordinfo() {
   username.innerText = usernamedc;
   discordpicture.src = `https://cdn.discordapp.com/avatars/${saitokurosaki}/${avatar}.png?size=512`;
 
-  if (activity?.type === 0) {
-    discordapp = activity?.application_id || null;
+  if (gameActivity) {
+    discordapp = gameActivity.application_id;
     discordappid = await fetch(
       `https://discord.com/api/v9/oauth2/applications/${discordapp}/rpc`,
     );
@@ -61,7 +66,7 @@ async function discordinfo() {
     applicationid = await discordappid.json();
 
     iconimage = applicationid.icon;
-    discordappname = data.data.activities[1].name;
+    discordappname = gameActivity.name;
     icon = `https://cdn.discordapp.com/app-icons/${discordapp}/${iconimage}.png`;
   }
   if (statusdc === "online") {
@@ -98,12 +103,12 @@ async function discordinfo() {
   `;
   }
 
-  if (activity?.type === 0) {
+  if (gameActivity) {
     elapsed = Date.now() - start;
-    start = activity.timestamps.start;
+    start = gameActivity.timestamps.start;
     time = formatTime(elapsed);
-    let name = activity.name;
-    let details = activity?.details || "";
+    let name = gameActivity.name;
+    let details = gameActivity.details || "";
     activitystatus.innerHTML = `
     <img
      src="${icon}"
@@ -129,17 +134,17 @@ ${
  ">${time}</p>
                 </div>
     `;
-  } else if (activity?.type === 2) {
-    start = activity.timestamps.start;
-    end = activity.timestamps.end;
+  } else if (spotifyActivity) {
+    start = spotifyActivity.timestamps.start;
+    end = spotifyActivity.timestamps.end;
     elapsed = Date.now() - start;
 
     const duration = end - start;
     const progress = Math.min((elapsed / duration) * 100, 100);
     const time = `${formatTime(elapsed)} / ${formatTime(duration)}`;
 
-    let details = activity.details;
-    let state = activity.state;
+    let details = spotifyActivity.details;
+    let state = spotifyActivity.state;
 
     activitystatus.innerHTML = `
   <img
@@ -180,13 +185,13 @@ ${
 
   </div>
 `;
-  } else if (activity?.type === 3) {
+  } else if (watchingActivity) {
     elapsed = Date.now() - start;
-    start = activity.timestamps.start;
+    start = watchingActivity.timestamps.start;
     time = formatTime(elapsed);
-    let details = activity.details;
-    let state = activity.state;
-    let episode = activity.assets.large_text;
+    let details = watchingActivity.details;
+    let state = watchingActivity.state;
+    let episode = watchingActivity.assets.large_text;
     activitystatus.innerHTML = `
     <img
      src="../Pictures/crunchyroll.png"
@@ -225,7 +230,7 @@ ${
     <p class="text-xs
  max-w-50
 
-">Saito Kurosaki is not displaying any activity on Discord right now.</p>
+">Saito Kurosaki is not displaying any activities on Discord right now.</p>
     <div>
     `;
   }
