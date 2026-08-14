@@ -25,12 +25,12 @@
           <ul
             class="flex gap-20 max-lg:gap-10 items-center text-[#1A1A1A] font-semibold text-lg list-none max-md:hidden"
           >
-            <li><a href="#">HOME</a></li>
-            <li><a href="#">ABOUT</a></li>
-            <li><a href="#">SKILLS</a></li>
-            <li><a href="#">PROJECT</a></li>
-            <li><a href="#">STATS</a></li>
-            <li><a href="#">CONTACT</a></li>
+            <li><a href="#" class="text-base">HOME</a></li>
+            <li><a href="#" class="text-base">ABOUT</a></li>
+            <li><a href="#" class="text-base">SKILLS</a></li>
+            <li><a href="#" class="text-base">PROJECT</a></li>
+            <li><a href="#" class="text-base">STATS</a></li>
+            <li><a href="#" class="text-base">CONTACT</a></li>
           </ul>
 
           <a href="#">
@@ -53,10 +53,10 @@
             />
 
             <div
-              class="herocontent max-lg:justify-end flex flex-col gap-5 w-full justify-center max-lg:min-h-120 max-sm:min-h-100"
+              class="max-lg:justify-end flex flex-col gap-5 w-full justify-center max-lg:min-h-120 max-sm:min-h-100"
             >
               <p
-                class="text-gray-500 text-[clamp(1rem,1.041vw,1.25rem)] leading-1.4"
+                class="text-gray-500 text-[clamp(1rem,1.041vw,1.25rem)] leading-[1.4]"
               >
                 HELLO, IM
               </p>
@@ -74,26 +74,24 @@
                   class="w-10 max-lg:w-8 max-md:w-7 max-sm:w-6"
                 />
 
-                <p
-                  class="font-bold text-[clamp(0.8rem,1.25vw,1.5rem)] leading-1.33"
-                >
+                <p class="font-bold text-[clamp(0.8rem,1.25vw,1.5rem)]">
                   Web Developer & Software Developer
                 </p>
               </div>
 
               <p
-                class="text-gray-500 text-[clamp(1rem,1.041vw,1.25rem)] leading-1.4"
+                class="text-gray-500 text-[clamp(1rem,1.041vw,1.25rem)] leading-[1.4]"
               >
                 I enjoy building websites and software, as well as exploring the
                 internet
               </p>
 
-              <div class="socials flex gap-5">
+              <div class="flex gap-5">
                 <a href="#">
                   <img
                     src="../svg/github.svg"
                     alt="GitHub"
-                    class="w-[clamp(3rem,3.125vw,3.75rem)] p-3 bg-[#FEFEFE] rounded-lg shadow-sm border border-[#8080801f] hover:-translate-y-4 transition-transform duration-300"
+                    class="w-15 max-lg:w-13 p-3 bg-[#FEFEFE] rounded-lg shadow-sm border border-[#8080801f] hover:-translate-y-4 transition-transform duration-300"
                   />
                 </a>
 
@@ -101,7 +99,7 @@
                   <img
                     src="../svg/discord.svg"
                     alt="Discord"
-                    class="w-[clamp(3rem,3.125vw,3.75rem)] p-3 bg-[#FEFEFE] rounded-lg shadow-sm border border-[#8080801f] hover:-translate-y-4 transition-transform duration-300"
+                    class="w-15 max-lg:w-13 p-3 bg-[#FEFEFE] rounded-lg shadow-sm border border-[#8080801f] hover:-translate-y-4 transition-transform duration-300"
                   />
                 </a>
 
@@ -109,7 +107,7 @@
                   <img
                     src="../svg/youtube.svg"
                     alt="YouTube"
-                    class="w-[clamp(3rem,3.125vw,3.75rem)] p-3 bg-[#FEFEFE] rounded-lg shadow-sm border border-[#8080801f] hover:-translate-y-4 transition-transform duration-300"
+                    class="w-15 max-lg:w-13 p-3 bg-[#FEFEFE] rounded-lg shadow-sm border border-[#8080801f] hover:-translate-y-4 transition-transform duration-300"
                   />
                 </a>
 
@@ -117,29 +115,29 @@
                   <img
                     src="../svg/tiktok.svg"
                     alt="TikTok"
-                    class="w-[clamp(3rem,3.125vw,3.75rem)] p-3 bg-[#FEFEFE] rounded-lg shadow-sm border border-[#8080801f] hover:-translate-y-4 transition-transform duration-300"
+                    class="w-15 max-lg:w-13 p-3 bg-[#FEFEFE] rounded-lg shadow-sm border border-[#8080801f] hover:-translate-y-4 transition-transform duration-300"
                   />
                 </a>
               </div>
             </div>
 
             <div
-              class="discord relative min-h-125 max-sm:min-h-100 w-full max-w-100 bg-[#FEFEFE] shadow-sm rounded-lg border border-[#8080801f] flex flex-col justify-center"
+              class="discord relative h-full w-full max-w-100 bg-[#FEFEFE] shadow-sm rounded-lg border border-[#8080801f] flex flex-col justify-center"
             >
-              <div class="discordlogo flex p-5 gap-3 text-sm items-center">
+              <div class="flex p-5 gap-3 text-sm items-center">
                 <img
                   src="../svg/discord.svg"
                   alt="Discord"
-                  class="w-10 max-md:w-9 max-sm:w-8"
+                  class="w-10 max-sm:w-8"
                 />
 
-                <p class="text-[clamp(0.8rem,0.83vw,1rem)]">DISCORD PRESENCE</p>
+                <p class="text-base max-sm:text-sm">DISCORD PRESENCE</p>
               </div>
 
               <div class="h-0.5 w-[90%] bg-gray-400 opacity-40 mx-auto"></div>
 
-              <div class="profile flex p-5 gap-5">
-                <div class="profilepic relative">
+              <div class="flex p-5 gap-5">
+                <div class="relative">
                   <img class="discordpicture rounded-full w-25 max-sm:w-23" />
 
                   <img
@@ -149,10 +147,16 @@
                   <img class="decoration absolute inset-0" />
                 </div>
 
-                <div class="discordname flex flex-col gap-2 justify-center">
-                  <p id="name" class="text-[clamp(1rem,0.93vw,1.12rem)]"></p>
+                <div class="flex flex-col gap-2 justify-center">
+                  <p
+                    id="name"
+                    class="text-lg max-sm:text-base font-semibold"
+                  ></p>
 
-                  <p id="username" class="text-[clamp(0.8rem,0.83vw,1rem)]"></p>
+                  <p
+                    id="username"
+                    class="text-base max-sm:text-sm text-gray-500"
+                  ></p>
 
                   <div class="status"></div>
                 </div>
@@ -164,14 +168,10 @@
 
               <div class="h-0.5 w-[90%] bg-gray-400 opacity-40 mx-auto"></div>
 
-              <div class="timeelapse p-5 flex items-center gap-3">
-                <img
-                  src="../svg/time.svg"
-                  alt="Time"
-                  class="w-10 max-md:w-9 max-sm:w-8"
-                />
+              <div class="p-5 flex items-center gap-3">
+                <img src="../svg/time.svg" alt="Time" class="w-10 max-sm:w-8" />
 
-                <p id="elapseTime" class="text-[clamp(0.8rem,0.83vw,1rem)]"></p>
+                <p id="elapseTime" class="text-base max-sm:text-sm"></p>
               </div>
             </div>
           </div>

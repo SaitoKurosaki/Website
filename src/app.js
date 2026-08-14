@@ -42,7 +42,10 @@ async function discordinfo() {
   let iconimage;
   let icon;
   let applicationid;
-  let activity = data.data.activities[1];
+  let activity = data.data.activities.find(
+    (activity) =>
+      activity.type === 0 || activity.type === 2 || activity.type === 3,
+  );
 
   name.innerText = namedc;
   let discordstatus = statusdc.toUpperCase();
@@ -66,7 +69,7 @@ async function discordinfo() {
     status.innerHTML = `
     
     <p
-                    class="bg-[#23a5595d] rounded-full h-fit w-fit text-[#23a55a] pr-4 pl-4 pt-0.5 pb-0.5 text-[clamp(0.8rem,0.83vw,1rem)] " 
+                    class="bg-[#23a5595d] rounded-full h-fit w-fit text-[#23a55a] max-sm:px-2 pr-4 pl-4 pt-0.5 pb-0.5 text-[clamp(0.8rem,0.83vw,1rem)] " 
   >ONLINE</p>
     `;
   } else if (statusdc === "dnd") {
@@ -74,7 +77,7 @@ async function discordinfo() {
     status.innerHTML = `
     
     <p
-                    class="bg-[#f23f4260] rounded-full h-fit w-fit text-[#f23f43] pr-4 pl-4 pt-0.5 pb-0.5 text-[clamp(0.8rem,0.83vw,1rem)] " 
+                    class="bg-[#f23f4260] rounded-full h-fit w-fit text-[#f23f43] max-sm:px-2 pr-4 pl-4 pt-0.5 pb-0.5 text-[clamp(0.8rem,0.83vw,1rem)] " 
   >DND </p>
     `;
   } else if (statusdc === "idle") {
@@ -82,7 +85,7 @@ async function discordinfo() {
     status.innerHTML = `
     
     <p
-                    class="bg-[#ffab0463] rounded-full h-fit w-fit text-[#ffab04] pr-4 pl-4 pt-0.5 pb-0.5 text-[clamp(0.8rem,0.83vw,1rem)] " 
+                    class="bg-[#ffab0463] rounded-full h-fit w-fit text-[#ffab04] max-sm:px-2  pr-4 pl-4 pt-0.5 pb-0.5 text-[clamp(0.8rem,0.83vw,1rem)] " 
   >IDLE</p>
     `;
   } else {
@@ -90,7 +93,7 @@ async function discordinfo() {
     status.innerHTML = `
     
     <p
-                    class="bg-[#80848e62] rounded-full h-fit w-fit text-[#3a3938] pr-4 pl-4 pt-0.5 pb-0.5 text-[clamp(0.8rem,0.83vw,1rem)]"
+                    class="bg-[#80848e62] rounded-full h-fit w-fit text-[#3a3938] max-sm:px-2 pr-4 pl-4 pt-0.5 pb-0.5 text-[clamp(0.8rem,0.83vw,1rem)]"
   >OFFLINE</p>
   `;
   }
@@ -104,13 +107,26 @@ async function discordinfo() {
     activitystatus.innerHTML = `
     <img
      src="${icon}"
-     class="activitylogo w-10 h-10 rounded-md gap-3 object-cover"
+     class="activitylogo max-sm:w-8 max-sm:h-8 w-10 h-10 rounded-md gap-3 object-cover"
      />
      <div class=" flex flex-col gap-3">
-     <p>Playing ${name}</p>
-     <p class=" text-gray-500">${name}</p>
-${details ? `<p>${details}</p>` : ""}
-      <p>${time}</p>
+     <p class="text-lg max-sm:text-base
+
+ text-gray-500 
+
+">Playing ${name}</p>
+     <p class="text-base max-sm:text-sm
+">${name}</p>
+${
+  details
+    ? `<p class="text-base max-sm:text-sm
+ 
+ ">${details}</p>`
+    : ""
+}
+      <p class="text-base max-sm:text-sm
+ 
+ ">${time}</p>
                 </div>
     `;
   } else if (activity?.type === 2) {
@@ -128,19 +144,28 @@ ${details ? `<p>${details}</p>` : ""}
     activitystatus.innerHTML = `
   <img
     src="../Pictures/spotify.png"
-    class=" w-10 h-10 rounded-md object-cover"
+    class=" max-sm:w-8 max-sm:h-8 w-10 h-10 rounded-md object-cover"
   />
 
   <div class="flex flex-col gap-3 w-full">
 
-    <p>Listening to Spotify</p>
+    <p class="text-lg max-sm:text-base
 
-    <p class="text-gray-500">${state}</p>
+ text-gray-500 
 
-    <p>${details}</p>
+">Listening to Spotify</p>
+
+    <p class="text-base max-sm:text-sm
+ 
+ ">${state}</p>
+
+    <p class="text-base max-sm:text-sm
+ 
+ ">${details}</p>
 
     <div class="flex items-center gap-2 w-full">
-      <span class="text-xs">${formatTime(elapsed)}</span>
+      <span class="text-base max-sm:text-sm
+">${formatTime(elapsed)}</span>
 
       <div class="relative h-1 bg-gray-300 rounded-full flex-1">
         <div
@@ -149,7 +174,8 @@ ${details ? `<p>${details}</p>` : ""}
         ></div>
       </div>
 
-      <span class="text-xs">${formatTime(duration)}</span>
+      <span class="text-base max-sm:text-sm
+">${formatTime(duration)}</span>
     </div>
 
   </div>
@@ -164,25 +190,40 @@ ${details ? `<p>${details}</p>` : ""}
     activitystatus.innerHTML = `
     <img
      src="../Pictures/crunchyroll.png"
-     class="activitylogo w-10 h-10 rounded-md gap-3 object-cover"
+     class="activitylogo max-sm:w-8 max-sm:h-8 w-10 h-10 rounded-md gap-3 object-cover"
      />
-     <div class=" flex flex-col gap-3">
-     <p>Watching Crunchyroll</p>
-     <p class=" text-gray-500">${details}</p>
-     <p id="">${state}</p>
-     <p>${episode}</p>
-      <p>${time}</p>
+     <div class=" flex flex-col gap-3 ">
+     <p class="text-lg max-sm:text-base 
+
+ text-gray-500 
+
+">Watching Crunchyroll</p>
+     <p class="text-base max-sm:text-sm
+ 
+ ">${details}</p>
+     <p class="text-base max-sm:text-sm
+
+">${state}</p>
+     <p class="text-base max-sm:text-sm
+
+">${episode}</p>
+      <p class="text-base max-sm:text-sm 
+
+">${time}</p>
                 </div>
     `;
   } else {
     activitystatus.innerHTML = `
     <div class="flex flex-col items-center text-center w-full">
     <img src="../Pictures/nostatus.png" class=" w-30 object-cover"/>
-    <p class="text-lg
- font-semibold
+    <p class="text-lg max-sm:text-base
+
+
+ font-bold
 
 ">No Activity</p>
-    <p class="text-xs max-w-50
+    <p class="text-xs
+ max-w-50
 
 ">Saito Kurosaki is not displaying any activity on Discord right now.</p>
     <div>
