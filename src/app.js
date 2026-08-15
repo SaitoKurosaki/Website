@@ -136,16 +136,16 @@ async function discordinfo() {
  text-gray-500 
 
 ">Playing ${name}</p>
-     <p class="text-base max-sm:text-sm
+     <p class=" max-sm:text-sm
 ">${name}</p>
 ${
   details
-    ? `<p class="text-base max-sm:text-sm
+    ? `<p class=" max-sm:text-sm
  
  ">${details}</p>`
     : ""
 }
-      <p class="text-base max-sm:text-sm
+      <p class=" max-sm:text-sm
  
  ">${time}</p>
                 </div>
@@ -176,16 +176,16 @@ ${
 
 ">Listening to Spotify</p>
 
-    <p class="text-base max-sm:text-sm
+    <p class=" max-sm:text-sm
  
  ">${state}</p>
 
-    <p class="text-base max-sm:text-sm
+    <p class=" max-sm:text-sm
  
  ">${details}</p>
 
     <div class="flex items-center gap-2 w-full">
-      <span class="text-base max-sm:text-sm
+      <span class=" max-sm:text-sm
 ">${formatTime(elapsed)}</span>
 
       <div class="relative h-1 bg-gray-300 rounded-full flex-1">
@@ -195,7 +195,7 @@ ${
         ></div>
       </div>
 
-      <span class="text-base max-sm:text-sm
+      <span class=" max-sm:text-sm
 ">${formatTime(duration)}</span>
     </div>
 
@@ -219,16 +219,16 @@ ${
  text-gray-500 
 
 ">Watching Crunchyroll</p>
-     <p class="text-base max-sm:text-sm
+     <p class=" max-sm:text-sm
  
  ">${details}</p>
-     <p class="text-base max-sm:text-sm
+     <p class=" max-sm:text-sm
 
 ">${state}</p>
-     <p class="text-base max-sm:text-sm
+     <p class=" max-sm:text-sm
 
 ">${episode}</p>
-      <p class="text-base max-sm:text-sm 
+      <p class=" max-sm:text-sm 
 
 ">${time}</p>
                 </div>
