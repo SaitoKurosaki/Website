@@ -32,14 +32,13 @@
             <li><a href="#" class="text-base">STATS</a></li>
             <li><a href="#" class="text-base">CONTACT</a></li>
           </ul>
-
-          <a href="#">
-            <img
-              src="../svg/burger-menu.svg"
-              alt="Menu"
-              class="w-12 max-md:w-10 p-3 max-md:p-2 border border-[#cdcfd3] rounded-lg md:hidden"
-            />
-          </a>
+          <button
+            id="menuBtn"
+            type="button"
+            class="w-12 max-md:w-10 p-3 max-md:p-2 border border-[#cdcfd3] rounded-lg md:hidden"
+          >
+            <img src="../svg/burger-menu.svg" alt="Menu" />
+          </button>
         </nav>
 
         <section id="home" class="min-h-dvh rounded-lg max-lg:min-h-0">
@@ -134,7 +133,7 @@
                 <p class="text-base max-sm:text-sm">DISCORD PRESENCE</p>
               </div>
 
-              <div class="h-0.5 w-[90%] bg-gray-400 opacity-40 mx-auto"></div>
+              <div class="h-px w-[90%] bg-gray-400 opacity-40 mx-auto"></div>
 
               <div class="flex p-5 gap-5">
                 <div class="relative">
@@ -162,11 +161,11 @@
                 </div>
               </div>
 
-              <div class="h-0.5 w-[90%] bg-gray-400 opacity-40 mx-auto"></div>
+              <div class="h-px w-[90%] bg-gray-400 opacity-40 mx-auto"></div>
 
               <div class="activitystatus flex gap-3 p-5"></div>
 
-              <div class="h-0.5 w-[90%] bg-gray-400 opacity-40 mx-auto"></div>
+              <div class="h-px w-[90%] bg-gray-400 opacity-40 mx-auto"></div>
 
               <div class="p-5 flex items-center gap-3">
                 <img src="../svg/time.svg" alt="Time" class="w-10 max-sm:w-8" />
@@ -178,7 +177,49 @@
         </section>
       </header>
     </div>
+    <div
+      id="darkoverlay"
+      class="fixed inset-0 opacity-0 bg-black/20 z-40 pointer-events-none transition-opacity duration-300"
+    ></div>
+    <aside
+      id="sidebar"
+      class="w-80 bg-[#FEFEFE] h-dvh translate-x-full fixed top-0 right-0 z-50 transition-transform ease-in-out duration-300 shadow-xl border-l border-[#8080801f]"
+    >
+      <div class="flex justify-between p-8 max-sm:p-5 items-center">
+        <p class="text-lg">MENU</p>
+        <button
+          type="button"
+          id="closeBtn"
+          class="w-12 max-md:w-10 p-3 max-md:p-2 border border-[#cdcfd3] rounded-lg md:hidden"
+        >
+          <img src="../svg/x.svg" alt="Menu" />
+        </button>
+      </div>
+      <div class="h-px w-[90%] bg-gray-400 opacity-40 mx-auto"></div>
 
+      <nav class="p-6">
+        <ul class="flex flex-col justify-between">
+          <li class="py-6 text-gray-700 hover:text-black">
+            <a href="#">HOME</a>
+          </li>
+          <li class="py-6 text-gray-700 hover:text-black">
+            <a href="#">ABOUT</a>
+          </li>
+          <li class="py-6 text-gray-700 hover:text-black">
+            <a href="#">SKILLS</a>
+          </li>
+          <li class="py-6 text-gray-700 hover:text-black">
+            <a href="#">PROJECT</a>
+          </li>
+          <li class="py-6 text-gray-700 hover:text-black">
+            <a href="#">STATS</a>
+          </li>
+          <li class="py-6 text-gray-700 hover:text-black">
+            <a href="#">CONTACT</a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
     <script src="../src/app.js"></script>
   </body>
 </html>

@@ -10,6 +10,22 @@ const activitylogo = document.querySelector(".activitylogo");
 const activitystatus = document.querySelector(".activitystatus");
 const elapseTime = document.querySelector("#elapseTime");
 const onlineSince = Date.now();
+const menuBtn = document.querySelector("#menuBtn");
+const sidebar = document.querySelector("#sidebar");
+const closeBtn = document.querySelector("#closeBtn");
+const darkoverlay = document.querySelector("#darkoverlay");
+menuBtn.addEventListener("click", () => {
+  sidebar.classList.remove("translate-x-full");
+  darkoverlay.classList.remove("opacity-0", "pointer-events-none");
+  document.body.classList.add("overflow-hidden");
+});
+
+closeBtn.addEventListener("click", () => {
+  sidebar.classList.add("translate-x-full");
+  darkoverlay.classList.add("opacity-0", "pointer-events-none");
+  document.body.classList.remove("overflow-hidden");
+});
+
 let elapsed;
 let start;
 let end;
