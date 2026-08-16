@@ -14,17 +14,8 @@ const menuBtn = document.querySelector("#menuBtn");
 const sidebar = document.querySelector("#sidebar");
 const closeBtn = document.querySelector("#closeBtn");
 const darkoverlay = document.querySelector("#darkoverlay");
-menuBtn.addEventListener("click", () => {
-  sidebar.classList.remove("translate-x-full");
-  darkoverlay.classList.remove("opacity-0", "pointer-events-none");
-  document.body.classList.add("overflow-hidden");
-});
-
-closeBtn.addEventListener("click", () => {
-  sidebar.classList.add("translate-x-full");
-  darkoverlay.classList.add("opacity-0", "pointer-events-none");
-  document.body.classList.remove("overflow-hidden");
-});
+const navbar = document.querySelector(".navbar");
+const mobileNav = document.querySelectorAll(".mobilenav");
 
 let elapsed;
 let start;
@@ -284,3 +275,24 @@ function Time() {
 
   elapseTime.textContent = `${time} Elapsed`;
 }
+
+menuBtn.addEventListener("click", () => {
+  sidebar.classList.remove("translate-x-full");
+  darkoverlay.classList.remove("opacity-0", "pointer-events-none");
+  document.body.classList.add("overflow-hidden");
+});
+
+closeBtn.addEventListener("click", () => {
+  sidebar.classList.add("translate-x-full");
+  darkoverlay.classList.add("opacity-0", "pointer-events-none");
+  document.body.classList.remove("overflow-hidden");
+});
+
+mobileNav.forEach((nav) => {
+  console.log(nav);
+  nav.addEventListener("click", () => {
+    sidebar.classList.add("translate-x-full");
+    darkoverlay.classList.add("opacity-0", "pointer-events-none");
+    document.body.classList.remove("overflow-hidden");
+  });
+});
