@@ -16,11 +16,11 @@
 
   <body class="bg-[#F4F5F6] p-2 fonttext">
     <div
-      class="bg-[#FEFEFE] min-h-dvh rounded-lg shadow-2xs overflow-hidden border border-[#8080801f]"
+      class=" bg-[#FEFEFE] rounded-lg shadow-2xs overflow-hidden border border-[#8080801f]"
     >
-      <header>
+      <header class=" flex flex-col">
         <nav
-          class="navbar scale flex items-center justify-center p-10 max-md:p-5 max-sm:p-2 rounded-lg bg-[#FEFEFE] border border-[#8080801f] w-full max-md:justify-end shadow-sm relative z-11"
+          class="navbar  flex items-center justify-center p-10 max-md:p-5 max-sm:p-2 rounded-lg bg-[#FEFEFE] border border-[#8080801f] w-full max-md:justify-end shadow-sm relative z-11"
         >
           <ul
             class="flex gap-20 max-lg:gap-10 items-center text-[#1A1A1A] font-semibold text-lg list-none max-md:hidden"
@@ -77,15 +77,17 @@
           </button>
         </nav>
 
-        <section id="home" class="min-h-dvh rounded-lg max-lg:min-h-0">
-          <div
-            class="relative z-10 flex items-center min-h-dvh max-sm:mx-2 mx-5 max-lg:min-h-0 max-lg:flex-col max-lg:gap-10 max-lg:py-10"
-          >
-            <img
+        <section id="home" class="flex-1 relative min-h-0 rounded-lg">
+
+          <img
               src="../Pictures/1.png"
               alt=""
-              class="absolute max-sm:left-10 w-full h-full max-changepic:object-cover object-contain mix-blend-multiply pointer-events-none max-lg:h-auto max-lg:top-0"
+              class="absolute max-sm:left-10 w-full h-full max-xl:object-cover object-contain mix-blend-multiply pointer-events-none max-lg:h-auto max-lg:top-0"
             />
+          <div
+            class=" flex items-center min-h-dvh max-sm:mx-2 mx-5  max-lg:flex-col max-lg:gap-10 "
+          >
+            
 
             <div
               class="max-lg:justify-end flex flex-col gap-5 w-full justify-center max-lg:min-h-120 max-sm:min-h-100"
@@ -96,11 +98,11 @@
                 HELLO, IM
               </p>
 
-              <p
+              <h1
                 class="fonttext leading-none font-semibold text-[clamp(2rem,6.667vw,8rem)] max-w-100"
               >
                 SAITO KUROSAKI
-              </p>
+              </h1>
 
               <div class="flex items-center gap-5 max-lg:gap-3 max-sm:gap-1">
                 <img
@@ -109,9 +111,9 @@
                   class="w-10 max-lg:w-8 max-md:w-7 max-sm:w-6"
                 />
 
-                <p class="font-bold text-[clamp(0.8rem,1.25vw,1.5rem)]">
+                <h2 class="font-bold text-[clamp(0.8rem,1.25vw,1.5rem)]">
                   Web Developer & Software Developer
-                </p>
+                </h2>
               </div>
 
               <p
@@ -166,7 +168,7 @@
                   class="w-10 max-sm:w-8"
                 />
 
-                <p class="max-sm:text-sm">DISCORD PRESENCE</p>
+                <p class="max-sm:text-sm font-semibold">DISCORD PRESENCE</p>
               </div>
 
               <div class="h-px w-[90%] bg-gray-400 opacity-40 mx-auto"></div>
@@ -176,7 +178,7 @@
                   <img class="discordpicture rounded-full w-25 max-sm:w-23" />
 
                   <img
-                    class="onlinestatus absolute bottom-1 right-0 w-7 bg-[#FEFEFE] rounded-full border-2 border-[#FEFEFE]"
+                    class="onlinestatus absolute bottom-1 right-0 w-7 bg-[#FEFEFE] rounded-full p-0.5 border-2 border-[#FEFEFE]"
                   />
 
                   <img class="decoration absolute inset-0" />
@@ -209,6 +211,53 @@
           </div>
         </section>
       </header>
+      <section id="skills"  class="bg-[#FEFEFE] shadow-sm rounded-lg border  border-[#8080801f] max-lg:mt-5 max-sm:mx-2 mx-5 mb-5">
+        <p class="m-5 text-lg font-semibold max-sm:text-base">SKILLS & TOOLS</p>
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] justify-items-center m-5 gap-5 ">
+        <div class="bg-[#FEFEFE] shadow-sm rounded-lg border border-[#8080801f] w-24 h-28 flex flex-col items-center justify-center gap-2">
+    <img src="../svg/html.svg" class="w-10 h-10">
+    <p class="text-sm font-medium">HTML</p>
+  </div>
+        <div class="bg-[#FEFEFE] shadow-sm rounded-lg border border-[#8080801f] w-24 h-28 flex flex-col items-center justify-center gap-2">
+          <img src="../svg/css.svg" class="w-10 h-10">
+          <p>CSS</p>
+        </div>
+        <div class="bg-[#FEFEFE] shadow-sm rounded-lg border border-[#8080801f] w-24 h-28 flex flex-col items-center justify-center gap-2">
+          <img src="../svg/javascript.svg" class="w-10 h-10">
+          <p>Javascript</p>
+        </div>
+        <div class="bg-[#FEFEFE] shadow-sm rounded-lg border border-[#8080801f] w-24 h-28 flex flex-col items-center justify-center gap-2">
+          <img src="../svg/csharp.svg" class="w-10 h-10">
+          <p>C#</p>
+        </div>
+        <div class="bg-[#FEFEFE] shadow-sm rounded-lg border border-[#8080801f] w-24 h-28 flex flex-col items-center justify-center gap-2">
+          <img src="../svg/linux-tux.svg" class="w-10 h-10">
+          <p>Linux</p>
+        </div>
+        <div class="bg-[#FEFEFE] shadow-sm rounded-lg border border-[#8080801f] w-24 h-28 flex flex-col items-center justify-center gap-2">
+          <img src="../svg/git-icon.svg" class="w-10 h-10">
+          <p>Git</p>
+        </div>
+        <div class="bg-[#FEFEFE] shadow-sm rounded-lg border border-[#8080801f] w-24 h-28 flex flex-col items-center justify-center gap-2">
+          <img src="../svg/mysql.svg" class="w-10 h-10">
+          <p>MySQL</p>
+        </div>
+        <div class="bg-[#FEFEFE] shadow-sm rounded-lg border border-[#8080801f] w-24 h-28 flex flex-col items-center justify-center gap-2">
+          <img src="../svg/tailwind.svg" class="w-10 h-10" >
+          <p>Tailwind</p>
+        </div>
+        <div class="bg-[#FEFEFE] shadow-sm rounded-lg border border-[#8080801f] w-24 h-28 flex flex-col items-center justify-center gap-2">
+          <img src="../svg/visual-studio-code.svg" class="w-10 h-10" >
+          <p>VSCode</p>
+        </div>
+        <div class="bg-[#FEFEFE] shadow-sm rounded-lg border border-[#8080801f] w-24 h-28 flex flex-col items-center justify-center gap-2">
+          <img src="../svg/visual-studio.svg" class="w-10 h-10" >
+          <p>VS</p>
+        </div>
+        
+      </div>
+    </section>
+    
     </div>
     <div
       id="darkoverlay"
@@ -265,6 +314,7 @@
         </ul>
       </nav>
     </aside>
+    
     <script src="../src/app.js"></script>
   </body>
 </html>
