@@ -16,10 +16,60 @@ const closeBtn = document.querySelector("#closeBtn");
 const darkoverlay = document.querySelector("#darkoverlay");
 const navbar = document.querySelector(".navbar");
 const mobileNav = document.querySelectorAll(".mobilenav");
-
+const previusbtn = document.querySelector("#previusbtn");
+const playandpausebtn = document.querySelector("#playandpausebtn");
+const nextbtn = document.querySelector("#nextbtn");
+const audio = document.querySelector("#audio");
+const midbtn = document.querySelector("#midbtn");
+const title = document.querySelector("#title");
+const artist = document.querySelector("#artist");
+const loadingScreen = document.getElementById("loadingScreen");
+const loadingBar = document.getElementById("loadingBar");
+const loadingPercent = document.getElementById("loadingPercent");
+const loadingStatus = document.getElementById("loadingStatus");
+const enterText = document.getElementById("enterText");
+let loadingProgress = 0;
+let pageReady = false;
+let entered = false;
 let elapsed;
 let start;
 let end;
+
+let curentsong = 0;
+
+const song = [
+  {
+    title: "Platinum Pills",
+    artist: "LikeYa999",
+    src: "../Music/platinum pills.mp3",
+    image: "../Pictures/music/platinum pills.jpg",
+  },
+  {
+    title: "Dusk To Dawn",
+    artist: "Prathxm",
+    src: "../Music/Dusk To Dawn.mp3",
+    image: "../Pictures/music/platinum pills.jpg",
+  },
+];
+
+nextbtn.addEventListener("click", () => {
+  curentsong++;
+  loadedsong(curentsong);
+  playsong();
+});
+
+function loadedsong(index) {
+  audio.src = song[index].src;
+}
+
+playandpausebtn.addEventListener("click", () => {
+  if (audio.paused) {
+    playsong();
+  } else {
+    pausesong();
+  }
+});
+
 setInterval(discordinfo, 1000);
 setInterval(Time, 1000);
 decor();
@@ -295,4 +345,62 @@ mobileNav.forEach((nav) => {
     darkoverlay.classList.add("opacity-0", "pointer-events-none");
     document.body.classList.remove("overflow-hidden");
   });
+});
+
+function playsong() {
+  audio.play();
+  midbtn.src = "../svg/control-buttons-pause.svg";
+}
+
+function pausesong() {
+  audio.pause();
+  midbtn.src = "../svg/button-play.svg";
+}
+const loadingInterval = setInterval(() => {
+  if (loadingProgress < 90) {
+    loadingProgress += Math.floor(Math.random() * 5) + 1;
+
+    if (loadingProgress > 90) {
+      loadingProgress = 90;
+    }
+
+    loadingBar.style.width = loadingProgress + "%";
+    loadingPercent.textContent = loadingProgress + "%";
+  }
+}, 180);
+
+window.addEventListener("load", () => {
+  pageReady = true;
+
+  clearInterval(loadingInterval);
+
+  loadingProgress = 100;
+  loadingBar.style.width = "100%";
+  loadingPercent.textContent = "100%";
+  loadingStatus.textContent = "READY";
+
+  setTimeout(() => {
+    enterText.classList.remove("opacity-0");
+  }, 400);
+});
+
+loadingScreen.addEventListener("click", async () => {
+  if (!pageReady || entered) return;
+
+  entered = true;
+
+  loadingStatus.textContent = "WELCOME";
+  enterText.textContent = "ENTERING...";
+
+  try {
+    await audio.play();
+  } catch (error) {
+    console.log("Audio could not autoplay:", error);
+  }
+
+  loadingScreen.classList.add("opacity-0", "pointer-events-none");
+
+  setTimeout(() => {
+    loadingScreen.remove();
+  }, 700);
 });

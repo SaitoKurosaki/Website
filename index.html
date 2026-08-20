@@ -12,18 +12,70 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+   
   </head>
 
   <body class="bg-[#F4F5F6] p-2 fonttext">
+
+
+    <div
+      id="loadingScreen"
+      class="fixed inset-0 z-200 bg-[#FEFEFE] overflow-hidden flex items-center justify-center cursor-pointer transition-opacity duration-700"
+    >
+
+      <img
+        src="../Pictures/loading.png"
+        alt=""
+        class="absolute inset-0 w-full h-full object-contain opacity-20 pointer-events-none max-xl:object-cover "
+      />
+
+      <div class="relative z-10 w-full max-w-2xl px-8 flex flex-col items-center text-center">
+        <p class="text-xs sm:text-sm tracking-[0.5em] text-gray-400 mb-5">
+          WEB DEVELOPER & SOFTWARE DEVELOPER
+        </p>
+
+        <h1 class="font-semibold text-[clamp(3rem,9vw,8rem)] leading-none tracking-[0.08em]">
+          SAITO KUROSAKI
+        </h1>
+
+        <div class="flex items-center gap-4 mt-8">
+          <div class="h-px w-16 bg-gray-300"></div>
+          <img src="../svg/code.svg" alt="" class="w-5 h-5 opacity-50">
+          <div class="h-px w-16 bg-gray-300"></div>
+        </div>
+
+        <div class="w-full max-w-md mt-10">
+          <div class="h-1 bg-gray-200 rounded-full overflow-hidden">
+            <div
+              id="loadingBar"
+              class="h-full w-0 bg-black rounded-full transition-all duration-300"
+            ></div>
+          </div>
+
+          <div class="flex justify-between mt-3 text-xs text-gray-400 tracking-[0.2em]">
+            <span id="loadingStatus">LOADING...</span>
+            <span id="loadingPercent">0%</span>
+          </div>
+        </div>
+
+        <p
+          id="enterText"
+          class="mt-12 text-xs sm:text-sm tracking-[0.45em] text-gray-500 opacity-0 transition-opacity duration-500"
+        >
+          CLICK ANYWHERE TO ENTER
+        </p>
+      </div>
+    </div>
+
     <div
       class=" bg-[#FEFEFE] rounded-lg shadow-2xs overflow-hidden border border-[#8080801f]"
     >
-      <header class=" flex flex-col">
-        <nav
-          class="navbar  flex items-center justify-center p-10 max-md:p-5 max-sm:p-2 rounded-lg bg-[#FEFEFE] border border-[#8080801f] w-full max-md:justify-end shadow-sm relative z-11"
+      <header class=" h-dvh max-lg:h-auto flex flex-col">
+       <nav
+          class="navbar flex items-center justify-center p-10 max-md:p-5 max-sm:p-2 rounded-lg bg-[#FEFEFE] border border-[#8080801f] w-full max-md:justify-end shadow-sm relative z-11"
         >
           <ul
-            class="flex gap-20 max-lg:gap-10 items-center text-[#1A1A1A] font-semibold text-lg list-none max-md:hidden"
+            class="flex gap-20 max-lg:gap-10 items-center text-gray-400 font-semibold text-xs sm:text-sm tracking-[0.18em] list-none max-md:hidden"
           >
             <li>
               <a
@@ -82,7 +134,7 @@
           <img
               src="../Pictures/1.png"
               alt=""
-              class="absolute max-sm:left-10 w-full h-full max-xl:object-cover object-contain mix-blend-multiply pointer-events-none max-lg:h-auto max-lg:top-0"
+              class="absolute max-sm:left-10 w-full h-full  object-contain mix-blend-multiply pointer-events-none max-lg:h-auto max-lg:top-0"
             />
           <div
             class=" flex items-center min-h-dvh max-sm:mx-2 mx-5  max-lg:flex-col max-lg:gap-10 "
@@ -99,7 +151,7 @@
               </p>
 
               <h1
-                class="fonttext leading-none font-semibold text-[clamp(2rem,6.667vw,8rem)] max-w-100"
+                class=" leading-none font-semibold text-[clamp(2rem,6.667vw,8rem)] max-w-100"
               >
                 SAITO KUROSAKI
               </h1>
@@ -257,7 +309,93 @@
         
       </div>
     </section>
+    <section id="stats"
+  class="mx-5 mb-5  grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-10  max-sm:mx-2">
+
+
+  <div class="p-5 flex flex-col bg-[#FEFEFE] shadow-sm rounded-lg border border-[#8080801f] justify-between">
     
+  </div>
+
+
+
+  <div class="p-3 gap-5 flex flex-col bg-[#FEFEFE] shadow-sm rounded-lg border border-[#8080801f]">
+    <div class="flex items-center gap-2 mb-3">
+        <img src="../svg/music.svg" class="w-4 h-4" alt="">
+        <p class="text-sm font-semibold">NOW PLAYING</p>
+    </div>
+
+
+    <div class="flex gap-4">
+
+      
+        
+        <img
+            src="../Pictures/music/platinum pills.jpg"
+            class="w-30 h-30 rounded-md object-cover shrink-0"
+            alt="Album cover"
+        >
+
+       
+        <div class="flex flex-col flex-1 min-w-0 justify-center">
+
+            <div>
+                <p id="title" class="text-lg
+ font-semibold  mb-2">
+                    Platinum Pills
+                </p>
+
+                <p id="artist" class="text-base text-gray-500  mb-2">
+                    LikeYa999
+                </p>
+
+                <p class="inline-block mt-1 px-2 py-0.5 text-sm text-gray-500 bg-gray-100 rounded-full">
+                    Spotify
+                </p>
+            </div>
+        </div>
+
+    </div>
+      
+<div class="flex items-center gap-2 mt-3">
+
+                <p class="text-xs text-gray-500 shrink-0">
+                    2:15
+                </p>
+
+                <div class="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                    <div
+                        class="h-full w-[45%] bg-[#929292] rounded-full"
+                    ></div>
+                </div>
+
+                <p class="text-xs text-gray-500 shrink-0">
+                    4:30
+                </p>
+
+            </div>
+        <div class="flex justify-evenly">
+          <button type="button" id="previusbtn" class="hover:cursor-pointer">
+            <img src="../svg/button-previous.svg" class="w-5 ">
+          </button >
+          <button type="button" id="playandpausebtn" class="hover:cursor-pointer"> <img id="midbtn" src="../svg/button-play.svg" class="w-10"></button>
+          
+          <button type="button" id="nextbtn" class="hover:cursor-pointer"> <img src="../svg/button-next.svg" class="w-5"></button>
+        </div>
+      <audio id="audio">
+        
+          <source id="songsource" src="../Music/platinum pills.mp3" type="audio/mpeg">
+        </audio>
+    
+  </div>
+
+
+
+  <div class="p-5 flex flex-col bg-[#FEFEFE] shadow-sm rounded-lg border border-[#8080801f]">
+
+  </div>
+
+</section>
     </div>
     <div
       id="darkoverlay"
@@ -315,6 +453,8 @@
       </nav>
     </aside>
     
+
+
     <script src="../src/app.js"></script>
   </body>
 </html>
