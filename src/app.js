@@ -77,6 +77,21 @@ const videos = [
     artist: "LikeYa999",
     src: "../Video/2.mp4",
   },
+  {
+    title: "Juice WRLD - Platinum Pills (Unreleased)",
+    artist: "LikeYa999",
+    src: "../Video/3.mp4",
+  },
+  {
+    title: "Juice WRLD - Fix My Flaws (Unreleased)",
+    artist: "LikeYa999",
+    src: "../Video/4.mp4",
+  },
+  {
+    title: "Juice WRLD - Good Morning (Unreleased)",
+    artist: "LikeYa999",
+    src: "../Video/5.mp4",
+  },
 ];
 
 previusbtn.addEventListener("click", () => {
