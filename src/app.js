@@ -31,15 +31,35 @@ const enterText = document.getElementById("enterText");
 const progressbar = document.querySelector(".progressbar");
 const videocurrentime = document.querySelector(".videocurrentime");
 const videodurationtime = document.querySelector(".videodurationtime");
-
+const skills = document.querySelectorAll(".skills");
+const skillssection = document.querySelector(".skillssection");
+const githubActivity = document.querySelector("#githubActivity");
+const githubAPI = "https://api.github.com/users/saitokurosaki/events/public";
+const githubRepos = document.querySelector("#githubRepos");
+const githubStars = document.querySelector("#githubStars");
+const githubFollowers = document.querySelector("#githubFollowers");
+const githubContributions = document.querySelector("#githubContributions");
+const githubUsername = "saitokurosaki";
 let loadingProgress = 0;
 let pageReady = false;
 let entered = false;
 let elapsed;
 let start;
 let end;
-
 let curentvideo = 0;
+
+skills.forEach((skillsnav) => {
+  skillsnav.addEventListener("click", () => {
+    const skillPosition =
+      skillssection.getBoundingClientRect().bottom +
+      window.scrollY -
+      window.innerHeight;
+
+    window.scrollTo({
+      top: skillPosition,
+    });
+  });
+});
 
 video.addEventListener("loadedmetadata", () => {
   const minute = Math.floor(video.duration / 60);
@@ -455,3 +475,412 @@ loadingScreen.addEventListener("click", async () => {
     loadingScreen.remove();
   }, 700);
 });
+
+function timeAgo(date) {
+  const seconds = Math.floor((Date.now() - new Date(date).getTime()) / 1000);
+
+  if (seconds < 60) {
+    return "Just now";
+  }
+
+  const minutes = Math.floor(seconds / 60);
+
+  if (minutes < 60) {
+    return `${minutes} ${minutes === 1 ? "minute" : "minutes"} ago`;
+  }
+
+  const hours = Math.floor(minutes / 60);
+
+  if (hours < 24) {
+    return `${hours} ${hours === 1 ? "hour" : "hours"} ago`;
+  }
+
+  const days = Math.floor(hours / 24);
+
+  if (days < 30) {
+    return `${days} ${days === 1 ? "day" : "days"} ago`;
+  }
+
+  const months = Math.floor(days / 30);
+
+  return `${months} ${months === 1 ? "month" : "months"} ago`;
+}
+
+function getActivity(event) {
+  const repoName = event.repo.name.split("/")[1];
+
+  switch (event.type) {
+    case "PushEvent":
+      return {
+        title: `Pushed to ${repoName}`,
+        description: "Updated repository",
+      };
+
+    case "CreateEvent":
+      if (event.payload.ref_type === "repository") {
+        return {
+          title: "Created repository",
+          description: repoName,
+        };
+      }
+
+      return {
+        title: "Created branch",
+        description: `${event.payload.ref} in ${repoName}`,
+      };
+
+    case "DeleteEvent":
+      return {
+        title: "Deleted branch",
+        description: `${event.payload.ref} from ${repoName}`,
+      };
+
+    case "ForkEvent":
+      return {
+        title: "Forked repository",
+        description: repoName,
+      };
+
+    case "WatchEvent":
+      return {
+        title: "Starred repository",
+        description: repoName,
+      };
+
+    case "IssuesEvent":
+      return {
+        title: `${event.payload.action} issue`,
+        description: repoName,
+      };
+
+    case "PullRequestEvent":
+      return {
+        title: `${event.payload.action} pull request`,
+        description: repoName,
+      };
+
+    case "ReleaseEvent":
+      return {
+        title: "Published release",
+        description: repoName,
+      };
+
+    default:
+      return {
+        title: event.type.replace("Event", ""),
+        description: repoName,
+      };
+  }
+}
+
+const githubCacheTime = 10 * 60 * 1000;
+
+function getGithubCache(key) {
+  try {
+    const cached = localStorage.getItem(key);
+
+    if (!cached) {
+      return null;
+    }
+
+    const data = JSON.parse(cached);
+
+    if (Date.now() - data.time > githubCacheTime) {
+      return null;
+    }
+
+    return data.data;
+  } catch {
+    return null;
+  }
+}
+
+function setGithubCache(key, data) {
+  try {
+    localStorage.setItem(
+      key,
+      JSON.stringify({
+        time: Date.now(),
+        data: data,
+      }),
+    );
+  } catch {}
+}
+
+async function githubFetch(url, cacheKey) {
+  const cached = getGithubCache(cacheKey);
+
+  if (cached) {
+    return cached;
+  }
+
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    const error = new Error(`GitHub returned ${response.status}`);
+
+    error.status = response.status;
+
+    throw error;
+  }
+
+  const data = await response.json();
+
+  setGithubCache(cacheKey, data);
+
+  return data;
+}
+
+async function getCommitMessage(event) {
+  if (event.type !== "PushEvent") {
+    return null;
+  }
+
+  const commitSHA = event.payload.head;
+
+  if (!commitSHA) {
+    return "Updated repository";
+  }
+
+  const cacheKey = `github-commit-${commitSHA}`;
+
+  const cached = getGithubCache(cacheKey);
+
+  if (cached) {
+    return cached;
+  }
+
+  try {
+    const response = await fetch(
+      `https://api.github.com/repos/${event.repo.name}/commits/${commitSHA}`,
+    );
+
+    if (!response.ok) {
+      return "Updated repository";
+    }
+
+    const commit = await response.json();
+
+    const message =
+      commit.commit?.message?.split("\n")[0]?.trim() || "Updated repository";
+
+    setGithubCache(cacheKey, message);
+
+    return message;
+  } catch {
+    return "Updated repository";
+  }
+}
+
+async function loadGithubActivity() {
+  try {
+    const events = await githubFetch(githubAPI, "github-events");
+
+    if (!Array.isArray(events)) {
+      throw new Error("GitHub response is not an array");
+    }
+
+    const latestEvents = events.slice(0, 3);
+
+    githubActivity.innerHTML = "";
+
+    if (latestEvents.length === 0) {
+      githubActivity.innerHTML = `
+        <p class="text-sm text-gray-400">
+          No recent activity.
+        </p>
+      `;
+
+      return;
+    }
+
+    for (let i = 0; i < latestEvents.length; i++) {
+      const event = latestEvents[i];
+
+      const activity = getActivity(event);
+
+      if (event.type === "PushEvent") {
+        activity.description = await getCommitMessage(event);
+      }
+
+      const isLast = i === latestEvents.length - 1;
+
+      const activityElement = document.createElement("a");
+
+      activityElement.href = `https://github.com/${event.repo.name}`;
+
+      activityElement.target = "_blank";
+      activityElement.rel = "noopener noreferrer";
+
+      activityElement.className = "relative flex gap-4 group";
+
+      activityElement.innerHTML = `
+        <div class="flex flex-col items-center">
+
+          <div
+            class="
+              w-3
+              h-3
+              rounded-full
+              bg-white
+              border
+              border-gray-300
+              shrink-0
+              group-hover:scale-125
+              transition-transform
+            "
+          ></div>
+
+          ${
+            !isLast
+              ? `
+                <div
+                  class="
+                    w-px
+                    flex-1
+                    bg-gray-300
+                  "
+                ></div>
+              `
+              : ""
+          }
+
+        </div>
+
+        <div
+          class="
+            pb-5
+            min-w-0
+            flex-1
+          "
+        >
+
+          <p
+            class="
+              text-sm
+              font-semibold
+              text-black
+            "
+          >
+            ${activity.title}
+          </p>
+
+          <p
+            class="
+              text-xs
+              text-gray-500
+              mt-1
+              break-words
+            "
+          >
+            ${activity.description}
+          </p>
+
+          <p
+            class="
+              text-[11px]
+              text-gray-400
+              mt-1
+            "
+          >
+            ${timeAgo(event.created_at)}
+          </p>
+
+        </div>
+      `;
+
+      githubActivity.appendChild(activityElement);
+    }
+  } catch (error) {
+    console.error("GitHub activity error:", error);
+
+    const cached = getGithubCache("github-events");
+
+    if (!cached) {
+      githubActivity.innerHTML = `
+        <p class="text-sm text-gray-400">
+          Unable to load GitHub activity.
+        </p>
+      `;
+    }
+  }
+}
+
+loadGithubActivity();
+
+async function loadGithubStats() {
+  try {
+    const user = await githubFetch(
+      `https://api.github.com/users/${githubUsername}`,
+      "github-user",
+    );
+
+    githubRepos.textContent = user.public_repos;
+
+    githubFollowers.textContent = user.followers;
+
+    const repos = await githubFetch(
+      `https://api.github.com/users/${githubUsername}/repos?per_page=100`,
+      "github-repositories",
+    );
+
+    const totalStars = repos.reduce(
+      (total, repo) => total + repo.stargazers_count,
+      0,
+    );
+
+    githubStars.textContent = totalStars;
+
+    const contributionData = await githubFetch(
+      `https://github-contributions-api.jogruber.de/v4/${githubUsername}?y=last`,
+      "github-contributions",
+    );
+
+    createContributionGraph(contributionData.contributions);
+  } catch (error) {
+    console.error("GitHub stats error:", error);
+  }
+}
+
+function createContributionGraph(contributions) {
+  githubContributions.innerHTML = "";
+
+  const days = contributions.slice(-140);
+
+  const graph = document.createElement("div");
+
+  graph.style.display = "grid";
+  graph.style.gridTemplateRows = "repeat(7, 8px)";
+  graph.style.gridAutoFlow = "column";
+  graph.style.gridAutoColumns = "minmax(0, 1fr)";
+  graph.style.gap = "3px";
+  graph.style.width = "100%";
+
+  days.forEach((day) => {
+    const square = document.createElement("div");
+
+    square.className = "w-full h-[8px] rounded-[2px]";
+
+    if (day.level === 0) {
+      square.classList.add("bg-gray-100");
+    } else if (day.level === 1) {
+      square.classList.add("bg-gray-200");
+    } else if (day.level === 2) {
+      square.classList.add("bg-gray-300");
+    } else if (day.level === 3) {
+      square.classList.add("bg-gray-400");
+    } else if (day.level === 4) {
+      square.classList.add("bg-gray-600");
+    } else {
+      square.classList.add("bg-gray-100");
+    }
+
+    square.title = `${day.count} contributions on ${day.date}`;
+
+    graph.appendChild(square);
+  });
+
+  githubContributions.appendChild(graph);
+}
+
+loadGithubStats();

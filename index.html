@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,7 +15,7 @@
    
   </head>
 
-  <body class="bg-[#F4F5F6] p-2 fonttext">
+  <body class="bg-[#F4F5F6] p-2 fonttext ">
 
 
     <div
@@ -71,7 +71,7 @@
     <div
       class=" bg-[#FEFEFE] rounded-lg shadow-2xs overflow-hidden border border-[#8080801f]"
     >
-      <header class=" h-dvh max-lg:h-auto flex flex-col">
+      <header id="home" class=" h-dvh max-lg:h-auto flex flex-col">
        <nav
           class="navbar flex items-center justify-center p-10 max-md:p-5 max-sm:p-2 rounded-lg bg-[#FEFEFE] border border-[#8080801f] w-full max-md:justify-end shadow-sm relative z-11"
         >
@@ -80,7 +80,7 @@
           >
             <li>
               <a
-                href="#"
+                href="#home"
                 class="relative py-2 text-gray-700 transition-colors hover:text-black duration-300 after:absolute after:h-0.5 after:w-0 hover:after:w-full after:bg-black after:bottom-0 after:left-0 after:transition-all after:duration-300"
                 >HOME</a
               >
@@ -93,11 +93,9 @@
               >
             </li>
             <li>
-              <a
-                href="#"
-                class="relative py-2 text-gray-700 transition-colors hover:text-black duration-300 after:absolute after:h-0.5 after:w-0 hover:after:w-full after:bg-black after:bottom-0 after:left-0 after:transition-all after:duration-300"
-                >SKILLS</a
-              >
+              <button class="skills" type="button">
+              <p class="relative py-2 text-gray-700 transition-colors hover:text-black duration-300 after:absolute after:h-0.5 after:w-0 hover:after:w-full after:bg-black after:bottom-0 after:left-0 after:transition-all after:duration-300">SKILLS</p>
+              </button>
             </li>
             <li>
               <a
@@ -143,7 +141,7 @@
             
 
             <div
-              class="max-lg:justify-end flex flex-col gap-5 w-full justify-center max-lg:min-h-120 "
+              class="max-lg:justify-end flex flex-col gap-5 w-full justify-center max-lg:min-h-140 "
             >
               <p
                 class="text-gray-500 text-[clamp(0.9rem,1.1vw,1.25rem)] leading-[1.4] tracking-[0.06em]"
@@ -264,7 +262,7 @@
           </div>
         </section>
       </header>
-      <section id="skills"  class="bg-[#FEFEFE] shadow-sm rounded-lg border  border-[#8080801f] max-lg:mt-5 max-sm:mx-2 mx-5 mb-5">
+      <section class="skillssection bg-[#FEFEFE] shadow-sm rounded-lg border  border-[#8080801f] max-lg:mt-5 max-sm:mx-2 mx-5 mb-5">
         <p class="m-5 text-lg font-semibold max-sm:text-base">SKILLS & TOOLS</p>
       <div class="grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] justify-items-center m-5 gap-5 ">
         <div class="bg-[#FEFEFE] shadow-sm rounded-lg border border-[#8080801f] w-24 h-28 flex flex-col items-center justify-center gap-2">
@@ -314,9 +312,18 @@
   class="mx-5 mb-5  grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-10  max-sm:mx-2">
 
 
-  <div class="p-5 flex flex-col bg-[#FEFEFE] shadow-sm rounded-lg border border-[#8080801f] justify-between">
-    
-  </div>
+  <div class="p-3 flex flex-col bg-[#FEFEFE] shadow-sm rounded-lg border border-[#8080801f]">
+
+    <div class="flex items-center gap-2 mb-5">
+        <img src="../svg/github.svg" class="w-5 h-5" alt="GitHub">
+        <p class="text-sm font-semibold">RECENT ACTIVITY</p>
+    </div>
+
+    <div id="githubActivity" class="relative ">
+        
+    </div>
+
+</div>
 
 
 
@@ -394,10 +401,184 @@ Juice WRLD - Dusk To Dawn (Unreleased)
 
   <div class="p-5 flex flex-col bg-[#FEFEFE] shadow-sm rounded-lg border border-[#8080801f]">
 
-  </div>
+    <div class="flex items-center justify-between mb-5">
+
+        <div class="flex items-center gap-2">
+
+            <img
+                src="../svg/github.svg"
+                class="w-5 h-5"
+                alt="GitHub"
+            >
+
+            <p class="text-sm font-semibold">
+                GITHUB STATS
+            </p>
+
+        </div>
+
+        <a
+            href="https://github.com/saitokurosaki"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-xs text-gray-500"
+        >
+            @saitokurosaki
+        </a>
+
+    </div>
+
+
+    <div class="mb-5">
+
+        <p class="text-xs font-semibold mb-3">
+            Contributions
+        </p>
+
+        <div
+            id="githubContributions"
+            class="w-full"
+        ></div>
+
+        <div class="flex justify-between mt-1">
+
+            <span class="text-[10px] text-gray-500">
+                Less
+            </span>
+
+            <span class="text-[10px] text-gray-500">
+                More
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="grid grid-cols-3 gap-4">
+
+        <div>
+
+            <p class="text-xs font-semibold">
+                Repositories
+            </p>
+
+            <p
+                id="githubRepos"
+                class="text-2xl mt-2"
+            >
+                -
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <p class="text-xs font-semibold">
+                Stars
+            </p>
+
+            <p
+                id="githubStars"
+                class="text-2xl mt-2"
+            >
+                -
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <p class="text-xs font-semibold">
+                Followers
+            </p>
+
+            <p
+                id="githubFollowers"
+                class="text-2xl mt-2"
+            >
+                -
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
 
 </section>
     </div>
+    <footer class="bg-[#FEFEFE] rounded-lg shadow-sm border border-[#8080801f] mt-5">
+
+    <div class="px-8 py-8 max-sm:px-5">
+
+        <div class="flex items-center justify-between gap-5 max-md:flex-col max-md:items-start">
+
+            <div class="flex flex-col gap-2">
+
+                <p class="text-sm font-semibold tracking-[0.12em]">
+                    SAITO KUROSAKI
+                </p>
+
+                <p class="text-xs text-gray-500">
+                    WEB DEVELOPER & SOFTWARE DEVELOPER
+                </p>
+
+            </div>
+
+            <div class="flex items-center gap-5">
+
+                <a
+                    href="https://github.com/saitokurosaki"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-xs text-gray-500 hover:text-black transition-colors"
+                >
+                    GITHUB
+                </a>
+
+                <a
+                    href="#"
+                    class="text-xs text-gray-500 hover:text-black transition-colors"
+                >
+                    DISCORD
+                </a>
+
+                <a
+                    href="#"
+                    class="text-xs text-gray-500 hover:text-black transition-colors"
+                >
+                    YOUTUBE
+                </a>
+
+                <a
+                    href="#"
+                    class="text-xs text-gray-500 hover:text-black transition-colors"
+                >
+                    TIKTOK
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="h-px bg-gray-200 my-6"></div>
+
+        <div class="flex items-center justify-between gap-5 max-sm:flex-col max-sm:items-start">
+
+            <p class="text-xs text-gray-400">
+                © 2026 SAITO KUROSAKI. ALL RIGHTS RESERVED.
+            </p>
+
+            
+
+        </div>
+
+    </div>
+
+</footer>
     <div
       id="darkoverlay"
       class="fixed inset-0 opacity-0 bg-black/20 z-40 pointer-events-none transition-opacity duration-300"
@@ -431,7 +612,7 @@ Juice WRLD - Dusk To Dawn (Unreleased)
             </button>
           </li>
           <li class="py-6 text-gray-700 hover:text-black">
-            <button class="mobilenav" type="button>
+            <button class="mobilenav skills" type="button>
               <a href="#">SKILLS</a>
             </button>
           </li>
@@ -441,7 +622,7 @@ Juice WRLD - Dusk To Dawn (Unreleased)
             </button>
           </li>
           <li class="py-6 text-gray-700 hover:text-black">
-            <button class="mobilenav" type="button>
+            <button class="mobilenav skillssection" type="button>
               <a href="#">STATS</a>
             </button>
           </li>
