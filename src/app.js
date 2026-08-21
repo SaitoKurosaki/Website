@@ -56,16 +56,24 @@ video.addEventListener("timeupdate", () => {
   const minute = Math.floor(video.currentTime / 60);
   const second = Math.floor(video.currentTime % 60);
   videocurrentime.textContent = `${minute}:${second.toString().padStart(2, "0")}`;
+  if (video.currentTime === video.duration) {
+    autonext();
+  }
 });
 
+function autonext() {
+  curentvideo++;
+  loadedvideo(curentvideo);
+  playvideo();
+}
 const videos = [
   {
-    title: "Dusk To Dawn",
+    title: "Juice WRLD - Dusk To Dawn (Unreleased)",
     artist: "Prathxm",
     src: "../Video/1.mp4",
   },
   {
-    title: "Juice WRLD - Better Than Us ft. Lil Uzi Vert",
+    title: "Juice WRLD - Better Than Us ft. Lil Uzi Vert (Unreleased)",
     artist: "LikeYa999",
     src: "../Video/2.mp4",
   },

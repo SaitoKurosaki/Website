@@ -320,6 +320,9 @@
   .h-30 {
     height: calc(var(--spacing) * 30);
   }
+  .h-40 {
+    height: calc(var(--spacing) * 40);
+  }
   .h-50 {
     height: calc(var(--spacing) * 50);
   }
@@ -379,6 +382,9 @@
   }
   .w-40 {
     width: calc(var(--spacing) * 40);
+  }
+  .w-50 {
+    width: calc(var(--spacing) * 50);
   }
   .w-80 {
     width: calc(var(--spacing) * 80);
@@ -701,6 +707,9 @@
   }
   .text-\[clamp\(0\.5rem\,1\.25vw\,1\.5rem\)\] {
     font-size: clamp(0.5rem, 1.25vw, 1.5rem);
+  }
+  .text-\[clamp\(0\.6rem\,0\.93vw\,1\.12rem\)\] {
+    font-size: clamp(0.6rem, 0.93vw, 1.12rem);
   }
   .text-\[clamp\(0\.6rem\,0\.93vw\,2rem\)\] {
     font-size: clamp(0.6rem, 0.93vw, 2rem);
@@ -1265,6 +1274,16 @@
   .max-sm\:w-23 {
     @media (width < 40rem) {
       width: calc(var(--spacing) * 23);
+    }
+  }
+  .max-sm\:w-30 {
+    @media (width < 40rem) {
+      width: calc(var(--spacing) * 30);
+    }
+  }
+  .max-sm\:w-40 {
+    @media (width < 40rem) {
+      width: calc(var(--spacing) * 40);
     }
   }
   .max-sm\:gap-1 {
