@@ -573,9 +573,10 @@ function getActivity(event) {
   }
 }
 
-const githubCacheTime = 10 * 60 * 1000;
+const githubActivityCacheTime = 30 * 1000;
+const githubStatsCacheTime = 10 * 60 * 1000;
 
-function getGithubCache(key) {
+function getGithubCache(key, cacheTime) {
   try {
     const cached = localStorage.getItem(key);
 
@@ -585,7 +586,8 @@ function getGithubCache(key) {
 
     const data = JSON.parse(cached);
 
-    if (Date.now() - data.time > githubCacheTime) {
+    if (Date.now() - data.time > cacheTime) {
+      localStorage.removeItem(key);
       return null;
     }
 
@@ -607,30 +609,6 @@ function setGithubCache(key, data) {
   } catch {}
 }
 
-async function githubFetch(url, cacheKey) {
-  const cached = getGithubCache(cacheKey);
-
-  if (cached) {
-    return cached;
-  }
-
-  const response = await fetch(url);
-
-  if (!response.ok) {
-    const error = new Error(`GitHub returned ${response.status}`);
-
-    error.status = response.status;
-
-    throw error;
-  }
-
-  const data = await response.json();
-
-  setGithubCache(cacheKey, data);
-
-  return data;
-}
-
 async function getCommitMessage(event) {
   if (event.type !== "PushEvent") {
     return null;
@@ -644,7 +622,7 @@ async function getCommitMessage(event) {
 
   const cacheKey = `github-commit-${commitSHA}`;
 
-  const cached = getGithubCache(cacheKey);
+  const cached = getGithubCache(cacheKey, githubActivityCacheTime);
 
   if (cached) {
     return cached;
@@ -674,7 +652,19 @@ async function getCommitMessage(event) {
 
 async function loadGithubActivity() {
   try {
-    const events = await githubFetch(githubAPI, "github-events");
+    let events = getGithubCache("github-events", githubActivityCacheTime);
+
+    if (!events) {
+      const response = await fetch(githubAPI);
+
+      if (!response.ok) {
+        throw new Error(`GitHub returned ${response.status}`);
+      }
+
+      events = await response.json();
+
+      setGithubCache("github-events", events);
+    }
 
     if (!Array.isArray(events)) {
       throw new Error("GitHub response is not an array");
@@ -710,6 +700,7 @@ async function loadGithubActivity() {
       activityElement.href = `https://github.com/${event.repo.name}`;
 
       activityElement.target = "_blank";
+
       activityElement.rel = "noopener noreferrer";
 
       activityElement.className = "relative flex gap-4 group";
@@ -794,15 +785,11 @@ async function loadGithubActivity() {
   } catch (error) {
     console.error("GitHub activity error:", error);
 
-    const cached = getGithubCache("github-events");
-
-    if (!cached) {
-      githubActivity.innerHTML = `
-        <p class="text-sm text-gray-400">
-          Unable to load GitHub activity.
-        </p>
-      `;
-    }
+    githubActivity.innerHTML = `
+      <p class="text-sm text-gray-400">
+        Unable to load GitHub activity.
+      </p>
+    `;
   }
 }
 
@@ -810,19 +797,41 @@ loadGithubActivity();
 
 async function loadGithubStats() {
   try {
-    const user = await githubFetch(
-      `https://api.github.com/users/${githubUsername}`,
-      "github-user",
-    );
+    let user = getGithubCache("github-user", githubStatsCacheTime);
+
+    if (!user) {
+      const response = await fetch(
+        `https://api.github.com/users/${githubUsername}`,
+      );
+
+      if (!response.ok) {
+        throw new Error("GitHub user request failed");
+      }
+
+      user = await response.json();
+
+      setGithubCache("github-user", user);
+    }
 
     githubRepos.textContent = user.public_repos;
 
     githubFollowers.textContent = user.followers;
 
-    const repos = await githubFetch(
-      `https://api.github.com/users/${githubUsername}/repos?per_page=100`,
-      "github-repositories",
-    );
+    let repos = getGithubCache("github-repositories", githubStatsCacheTime);
+
+    if (!repos) {
+      const response = await fetch(
+        `https://api.github.com/users/${githubUsername}/repos?per_page=100`,
+      );
+
+      if (!response.ok) {
+        throw new Error("GitHub repositories request failed");
+      }
+
+      repos = await response.json();
+
+      setGithubCache("github-repositories", repos);
+    }
 
     const totalStars = repos.reduce(
       (total, repo) => total + repo.stargazers_count,
@@ -831,10 +840,24 @@ async function loadGithubStats() {
 
     githubStars.textContent = totalStars;
 
-    const contributionData = await githubFetch(
-      `https://github-contributions-api.jogruber.de/v4/${githubUsername}?y=last`,
+    let contributionData = getGithubCache(
       "github-contributions",
+      githubStatsCacheTime,
     );
+
+    if (!contributionData) {
+      const response = await fetch(
+        `https://github-contributions-api.jogruber.de/v4/${githubUsername}?y=last`,
+      );
+
+      if (!response.ok) {
+        throw new Error("Contribution request failed");
+      }
+
+      contributionData = await response.json();
+
+      setGithubCache("github-contributions", contributionData);
+    }
 
     createContributionGraph(contributionData.contributions);
   } catch (error) {

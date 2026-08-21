@@ -484,6 +484,9 @@
   .grid-flow-col {
     grid-auto-flow: column;
   }
+  .grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -1534,6 +1537,16 @@
       letter-spacing: var(--tracking-normal);
     }
   }
+  .sm\:grid-cols-3 {
+    @media (width >= 40rem) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .sm\:gap-4 {
+    @media (width >= 40rem) {
+      gap: calc(var(--spacing) * 4);
+    }
+  }
   .sm\:\!text-6xl {
     @media (width >= 40rem) {
       font-size: var(--text-6xl) !important;
@@ -1586,10 +1599,20 @@
       display: none;
     }
   }
+  .md\:grid-cols-4 {
+    @media (width >= 48rem) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
   .md\:\!text-7xl {
     @media (width >= 48rem) {
       font-size: var(--text-7xl) !important;
       line-height: var(--tw-leading, var(--text-7xl--line-height)) !important;
+    }
+  }
+  .lg\:grid-cols-5 {
+    @media (width >= 64rem) {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
     }
   }
   .lg\:\!text-8xl {
@@ -1602,6 +1625,11 @@
     @media (width >= 64rem) {
       font-size: var(--text-xl) !important;
       line-height: var(--tw-leading, var(--text-xl--line-height)) !important;
+    }
+  }
+  .xl\:grid-cols-10 {
+    @media (width >= 80rem) {
+      grid-template-columns: repeat(10, minmax(0, 1fr));
     }
   }
   .xl\:\!text-9xl {
