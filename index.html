@@ -20,7 +20,8 @@
 
     <div
       id="loadingScreen"
-      class="fixed inset-0 z-200 bg-[#FEFEFE] overflow-hidden flex items-center justify-center cursor-pointer transition-opacity duration-700"
+      class="fixed inset-0 z-200 bg-[#FEFEFE] overflow-hidden flex items-center justify-center cursor-pointer transition-opacity duration-700 overscroll-none
+"
     >
 
       <img
@@ -137,39 +138,39 @@
               class="absolute max-sm:left-10 w-full h-full  object-contain mix-blend-multiply pointer-events-none max-lg:h-auto max-lg:top-0"
             />
           <div
-            class=" flex items-center min-h-dvh max-sm:mx-2 mx-5  max-lg:flex-col max-lg:gap-10 "
+            class=" flex items-center min-h-dvh max-lg:min-h-auto max-sm:mx-2 mx-5  max-lg:flex-col max-lg:gap-10 "
           >
             
 
             <div
-              class="max-lg:justify-end flex flex-col gap-5 w-full justify-center max-lg:min-h-120 max-sm:min-h-100"
+              class="max-lg:justify-end flex flex-col gap-5 w-full justify-center max-lg:min-h-120 "
             >
               <p
-                class="text-gray-500 text-[clamp(1rem,1.041vw,1.25rem)] leading-[1.4]"
+                class="text-gray-500 text-[clamp(0.9rem,1.1vw,1.25rem)] leading-[1.4] tracking-[0.06em]"
               >
                 HELLO, IM
               </p>
 
               <h1
-                class=" leading-none font-semibold text-[clamp(2rem,6.667vw,8rem)] max-w-100"
+                class="leading-[0.9] font-semibold text-[clamp(3rem,6.6vw,8rem)] max-w-[11ch] tracking-[0.06em] max-lg:text-[clamp(3.25rem,10vw,6rem)] sm:tracking-[0.06em]"
               >
                 SAITO KUROSAKI
               </h1>
 
-              <div class="flex items-center gap-5 max-lg:gap-3 max-sm:gap-1">
+              <div class="flex items-center gap-5 max-lg:gap-3 max-sm:gap-1 ">
                 <img
                   src="../svg/greaterthan.svg"
                   alt=">"
-                  class="w-10 max-lg:w-8 max-md:w-7 max-sm:w-6"
+                  class="w-10 max-lg:w-8 max-md:w-7 max-sm:w-4"
                 />
 
-                <h2 class="font-bold text-[clamp(0.8rem,1.25vw,1.5rem)]">
-                  Web Developer & Software Developer
-                </h2>
+                <h2 class="font-semibold text-[clamp(0.8rem,1.25vw,1.5rem)] tracking-[0.12em] sm:tracking-[0.16em]">
+  Web Developer & Software Developer
+</h2>
               </div>
 
               <p
-                class="text-gray-500 text-[clamp(1rem,1.041vw,1.25rem)] leading-[1.4]"
+                class="text-gray-500 text-[clamp(0.9rem,1.041vw,1.25rem)] leading-[1.4] tracking-wider"
               >
                 I enjoy building websites and software, as well as exploring the
                 internet
@@ -330,26 +331,27 @@
 
       
         
-        <img
-            src="../Pictures/music/platinum pills.jpg"
-            class="w-30 h-30 rounded-md object-cover shrink-0"
-            alt="Album cover"
-        >
+       <video id="video"  class=" w-40 h-30 border border-[#8080801f] object-cover rounded-lg shadow-sm"
+>
+
+        <source id="videosrc"  src="../Video/1.mp4">
+      
+      </video>
 
        
         <div class="flex flex-col flex-1 min-w-0 justify-center">
 
             <div>
-                <p id="title" class="text-lg
+                <p id="title" class="text-[clamp(0.8rem,0.93vw,1.12rem)]
  font-semibold  mb-2">
-                    Platinum Pills
+                    Dusk To Dawn
                 </p>
 
-                <p id="artist" class="text-base text-gray-500  mb-2">
-                    LikeYa999
+                <p id="artist" class="text-base max-sm:text-sm text-gray-500  mb-2">
+                    Prathxm
                 </p>
 
-                <p class="inline-block mt-1 px-2 py-0.5 text-sm text-gray-500 bg-gray-100 rounded-full">
+                <p class="inline-block mt-1 px-2 py-0.5 text-sm text-gray-500 bg-gray-100 rounded-full ">
                     Spotify
                 </p>
             </div>
@@ -359,18 +361,18 @@
       
 <div class="flex items-center gap-2 mt-3">
 
-                <p class="text-xs text-gray-500 shrink-0">
-                    2:15
+                <p class="videocurrentime text-xs text-gray-500 shrink-0">
+                    0:00
                 </p>
 
                 <div class="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
-                    <div
-                        class="h-full w-[45%] bg-[#929292] rounded-full"
+                    <div 
+                        class="progressbar h-full  bg-[#929292] rounded-full"
                     ></div>
                 </div>
 
-                <p class="text-xs text-gray-500 shrink-0">
-                    4:30
+                <p class="videodurationtime text-xs text-gray-500 shrink-0">
+                    0:00
                 </p>
 
             </div>
@@ -378,14 +380,12 @@
           <button type="button" id="previusbtn" class="hover:cursor-pointer">
             <img src="../svg/button-previous.svg" class="w-5 ">
           </button >
-          <button type="button" id="playandpausebtn" class="hover:cursor-pointer"> <img id="midbtn" src="../svg/button-play.svg" class="w-10"></button>
+          <button type="button" id="playandpausebtn" class="hover:cursor-pointer"> <img id="midbtn" src="../svg/control-buttons-pause.svg" class="w-10"></button>
           
           <button type="button" id="nextbtn" class="hover:cursor-pointer"> <img src="../svg/button-next.svg" class="w-5"></button>
         </div>
-      <audio id="audio">
-        
-          <source id="songsource" src="../Music/platinum pills.mp3" type="audio/mpeg">
-        </audio>
+      
+      </video>
     
   </div>
 

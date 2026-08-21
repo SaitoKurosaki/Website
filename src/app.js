@@ -19,7 +19,7 @@ const mobileNav = document.querySelectorAll(".mobilenav");
 const previusbtn = document.querySelector("#previusbtn");
 const playandpausebtn = document.querySelector("#playandpausebtn");
 const nextbtn = document.querySelector("#nextbtn");
-const audio = document.querySelector("#audio");
+const video = document.querySelector("#video");
 const midbtn = document.querySelector("#midbtn");
 const title = document.querySelector("#title");
 const artist = document.querySelector("#artist");
@@ -28,6 +28,10 @@ const loadingBar = document.getElementById("loadingBar");
 const loadingPercent = document.getElementById("loadingPercent");
 const loadingStatus = document.getElementById("loadingStatus");
 const enterText = document.getElementById("enterText");
+const progressbar = document.querySelector(".progressbar");
+const videocurrentime = document.querySelector(".videocurrentime");
+const videodurationtime = document.querySelector(".videodurationtime");
+
 let loadingProgress = 0;
 let pageReady = false;
 let entered = false;
@@ -35,38 +39,66 @@ let elapsed;
 let start;
 let end;
 
-let curentsong = 0;
+let curentvideo = 0;
 
-const song = [
-  {
-    title: "Platinum Pills",
-    artist: "LikeYa999",
-    src: "../Music/platinum pills.mp3",
-    image: "../Pictures/music/platinum pills.jpg",
-  },
+video.addEventListener("loadedmetadata", () => {
+  const minute = Math.floor(video.duration / 60);
+  const second = Math.floor(video.duration % 60);
+
+  videodurationtime.textContent = `${minute}:${second.toString().padStart(2, "0")}`;
+});
+
+video.addEventListener("timeupdate", () => {
+  if (!video.duration) return;
+
+  const percent = (video.currentTime / video.duration) * 100;
+  progressbar.style.width = `${percent}%`;
+  const minute = Math.floor(video.currentTime / 60);
+  const second = Math.floor(video.currentTime % 60);
+  videocurrentime.textContent = `${minute}:${second.toString().padStart(2, "0")}`;
+});
+
+const videos = [
   {
     title: "Dusk To Dawn",
     artist: "Prathxm",
-    src: "../Music/Dusk To Dawn.mp3",
-    image: "../Pictures/music/platinum pills.jpg",
+    src: "../Video/1.mp4",
+  },
+  {
+    title: "Juice WRLD - Better Than Us ft. Lil Uzi Vert",
+    artist: "LikeYa999",
+    src: "../Video/2.mp4",
   },
 ];
 
-nextbtn.addEventListener("click", () => {
-  curentsong++;
-  loadedsong(curentsong);
-  playsong();
+previusbtn.addEventListener("click", () => {
+  if (curentvideo >= 0) {
+    curentvideo--;
+    loadedvideo(curentvideo);
+    playvideo();
+  }
 });
 
-function loadedsong(index) {
-  audio.src = song[index].src;
+nextbtn.addEventListener("click", () => {
+  if (curentvideo <= videos.length - 2) {
+    curentvideo++;
+    loadedvideo(curentvideo);
+    playvideo();
+  }
+  console.log(curentvideo);
+});
+
+function loadedvideo(index) {
+  video.src = videos[index].src;
+  title.textContent = videos[index].title;
+  artist.textContent = videos[index].artist;
 }
 
 playandpausebtn.addEventListener("click", () => {
-  if (audio.paused) {
-    playsong();
+  if (video.paused) {
+    playvideo();
   } else {
-    pausesong();
+    pausevideo();
   }
 });
 
@@ -339,7 +371,6 @@ closeBtn.addEventListener("click", () => {
 });
 
 mobileNav.forEach((nav) => {
-  console.log(nav);
   nav.addEventListener("click", () => {
     sidebar.classList.add("translate-x-full");
     darkoverlay.classList.add("opacity-0", "pointer-events-none");
@@ -347,15 +378,16 @@ mobileNav.forEach((nav) => {
   });
 });
 
-function playsong() {
-  audio.play();
+function playvideo() {
+  video.play();
   midbtn.src = "../svg/control-buttons-pause.svg";
 }
 
-function pausesong() {
-  audio.pause();
+function pausevideo() {
+  video.pause();
   midbtn.src = "../svg/button-play.svg";
 }
+
 const loadingInterval = setInterval(() => {
   if (loadingProgress < 90) {
     loadingProgress += Math.floor(Math.random() * 5) + 1;
@@ -392,11 +424,7 @@ loadingScreen.addEventListener("click", async () => {
   loadingStatus.textContent = "WELCOME";
   enterText.textContent = "ENTERING...";
 
-  try {
-    await audio.play();
-  } catch (error) {
-    console.log("Audio could not autoplay:", error);
-  }
+  video.play();
 
   loadingScreen.classList.add("opacity-0", "pointer-events-none");
 
