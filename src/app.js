@@ -39,6 +39,7 @@ const githubRepos = document.querySelector("#githubRepos");
 const githubStars = document.querySelector("#githubStars");
 const githubFollowers = document.querySelector("#githubFollowers");
 const githubContributions = document.querySelector("#githubContributions");
+const year = document.querySelector("#year");
 const githubUsername = "saitokurosaki";
 let loadingProgress = 0;
 let pageReady = false;
@@ -47,7 +48,7 @@ let elapsed;
 let start;
 let end;
 let curentvideo = 0;
-
+year.textContent = new Date().getFullYear();
 skills.forEach((skillsnav) => {
   skillsnav.addEventListener("click", () => {
     const skillPosition =
@@ -170,7 +171,7 @@ async function discordinfo() {
   let namedc = data.data.discord_user.display_name;
   let usernamedc = data.data.discord_user.username;
   let statusdc = data.data.discord_status;
-  let discordappname;
+
   let iconimage;
   let icon;
   let applicationid;
@@ -185,7 +186,6 @@ async function discordinfo() {
   );
 
   name.innerText = namedc;
-  let discordstatus = statusdc.toUpperCase();
   username.innerText = usernamedc;
   discordpicture.src = `https://cdn.discordapp.com/avatars/${saitokurosaki}/${avatar}.png?size=512`;
 
@@ -273,7 +273,6 @@ ${
 
     const duration = end - start;
     const progress = Math.min((elapsed / duration) * 100, 100);
-    const time = `${formatTime(elapsed)} / ${formatTime(duration)}`;
 
     let details = spotifyActivity.details;
     let state = spotifyActivity.state;
