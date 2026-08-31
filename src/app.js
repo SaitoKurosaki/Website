@@ -134,7 +134,6 @@ nextbtn.addEventListener("click", () => {
     loadedvideo(curentvideo);
     playvideo();
   }
-  console.log(curentvideo);
 });
 
 function loadedvideo(index) {
