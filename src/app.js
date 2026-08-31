@@ -113,6 +113,11 @@ const videos = [
     artist: "LikeYa999",
     src: "../Video/5.mp4",
   },
+  {
+    title: "Juice WRLD - Take My Soul [Prod.Tsuki x Aster]",
+    artist: "KurøTsuki",
+    src: "../Video/6.mp4",
+  },
 ];
 
 previusbtn.addEventListener("click", () => {
